@@ -9,10 +9,11 @@ const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navItems = [
     { href: "/", name: "Home" },
-    { href: "#about", name: "About" },
+    { href: "/", name: "Facilities" },
     // { href: "#services", name: "Service" },
-    { href: "#portfolio", name: "Portfolio" },
-    { href: "#blog", name: "Blog" },
+    { href: "/", name: "Admission" },
+    { href: "/", name: "Academic" },
+    { href: "/", name: "Administration" },
     { href: "/login", name: "Login" },
   ];
   return (
