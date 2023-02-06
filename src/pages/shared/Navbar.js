@@ -36,15 +36,21 @@ const Navbar = () => {
           </div>
           <div className="items-center lg:flex hidden gap-5 font-semibold">
             <div className="flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
-              <NavLink className="flex items-center text-sky-400 " to="/">
+              <NavLink
+                className="flex items-center text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium"
+                to="/"
+              >
                 Home
               </NavLink>
             </div>
             <div className="relative group flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 ">
-              <Link className=" hover:text-sky-400  flex items-center" to="/">
+              <Link
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium  flex items-center"
+                to="/"
+              >
                 Facilities
               </Link>
-              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-8 left-0 w-40 p-5 rounded-md shadow-lg border">
+              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-40 p-5 rounded-md shadow-lg border">
                 <Link className="hover:text-sky-400" to="/">
                   dropdown-1
                 </Link>
@@ -57,10 +63,13 @@ const Navbar = () => {
               </div>
             </div>
             <div className="group relative flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400  ">
-              <Link className="hover:text-sky-400 flex items-center" to="/">
+              <Link
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
+                to="/"
+              >
                 Admission
               </Link>
-              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-8 left-0 w-40 p-5 rounded-md shadow-lg border">
+              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-40 p-5 rounded-md shadow-lg border">
                 <Link className="hover:text-sky-400" to="/">
                   dropdown-1
                 </Link>
@@ -73,12 +82,18 @@ const Navbar = () => {
               </div>
             </div>
             <div className="flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
-              <Link className="flex items-center" to="/">
+              <Link
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
+                to="/"
+              >
                 Academic
               </Link>
             </div>
             <div className="flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
-              <Link className="flex items-center" to="/">
+              <Link
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
+                to="/"
+              >
                 Administration
               </Link>
             </div>
