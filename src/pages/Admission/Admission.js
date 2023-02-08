@@ -6,7 +6,7 @@ const Admission = () => {
     <div>
       <PageTopBanner title={"Admission"} />
       <div className="max-w-[1200px] w-full mx-auto p-3 md:flex gap-5">
-        <div>
+        <div className="w-full mx-auto">
           <h1 className="text-sky-500 dark:text-sky-400 text-xl font-bold">
             Admission-2023
           </h1>
@@ -133,7 +133,7 @@ const Admission = () => {
             </div>
             <button
               type="submit"
-              class="text-white bg-sky-500 hover:bg-sky-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-sky-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              class="text-white bg-sky-500 hover:bg-sky-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-sky-500 dark:hover:bg-sky-700 dark:focus:ring-blue-800"
             >
               Submit
             </button>
