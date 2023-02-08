@@ -1,6 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Calendar = () => {
+  const [date, setDate] = useState(new Date());
+  const [month, setMonth] = useState(date.get);
+  const [year, setYear] = useState(2020);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  function getDaysInMonth(month, year) {
+    return new Date(year, month, 0).getDate();
+  }
+  const totalDaysInMonth = getDaysInMonth(
+    date.getMonth() + 1,
+    date.getFullYear()
+  );
+  const day = date.getDay();
+  const newArray = Array.from({ length: day }, (_, i) => " ");
+  for (let i = 1; i <= totalDaysInMonth; i++) {
+    newArray.push(i);
+  }
+  const chunkSize = 7;
+  let col = [];
+  for (let i = 0; i < newArray.length; i += chunkSize) {
+    const chunk = newArray.slice(i, i + chunkSize);
+    col.push(chunk);
+  }
   return (
     <div class="flex items-center pb-8 px-4">
       <div class="max-w-sm w-full shadow-lg">
@@ -10,10 +45,19 @@ const Calendar = () => {
               tabindex="0"
               class="focus:outline-none  text-base font-bold dark:text-gray-100 text-gray-800"
             >
-              October 2020
+              {months[date.getMonth()]} {date.getFullYear()}
             </span>
             <div class="flex items-center">
               <button
+                onClick={() =>
+                  setDate(
+                    new Date(
+                      date.getFullYear(),
+                      date.getMonth() - 1,
+                      date.getDate()
+                    )
+                  )
+                }
                 aria-label="calendar backward"
                 class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100"
               >
@@ -36,6 +80,15 @@ const Calendar = () => {
               <button
                 aria-label="calendar forward"
                 class="focus:text-gray-400 hover:text-gray-400 ml-3 text-gray-800 dark:text-gray-100"
+                onClick={() =>
+                  setDate(
+                    new Date(
+                      date.getFullYear(),
+                      date.getMonth() + 1,
+                      date.getDate()
+                    )
+                  )
+                }
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -59,293 +112,38 @@ const Calendar = () => {
             <table class="w-full">
               <thead>
                 <tr>
-                  <th>
-                    <div class="w-full flex justify-center">
-                      <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
-                        Mo
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div class="w-full flex justify-center">
-                      <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
-                        Tu
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div class="w-full flex justify-center">
-                      <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
-                        We
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div class="w-full flex justify-center">
-                      <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
-                        Th
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div class="w-full flex justify-center">
-                      <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
-                        Fr
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div class="w-full flex justify-center">
-                      <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
-                        Sa
-                      </p>
-                    </div>
-                  </th>
-                  <th>
-                    <div class="w-full flex justify-center">
-                      <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
-                        Su
-                      </p>
-                    </div>
-                  </th>
+                  {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
+                    <th key={day}>
+                      <div class="w-full flex justify-center">
+                        <p
+                          class={`text-base font-medium text-center text-gray-800 dark:text-gray-100`}
+                        >
+                          {day}
+                        </p>
+                      </div>
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="pt-6">
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center"></div>
-                  </td>
-                  <td class="pt-6">
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center"></div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center"></div>
-                  </td>
-                  <td class="pt-6">
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        1
-                      </p>
-                    </div>
-                  </td>
-                  <td class="pt-6">
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        2
-                      </p>
-                    </div>
-                  </td>
-                  <td class="pt-6">
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100">
-                        3
-                      </p>
-                    </div>
-                  </td>
-                  <td class="pt-6">
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100">
-                        4
-                      </p>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        5
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        6
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        7
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="w-full h-full">
-                      <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                        {/* <a
-                          role="link"
-                          tabindex="0"
-                          class="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:bg-indigo-500 hover:bg-indigo-500 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-indigo-700 rounded-full"
+                {col.map((dt, i) => (
+                  <tr className={dt + i}>
+                    {dt.map((dtn, i2) => (
+                      <td key={dtn + i2} class="">
+                        <div
+                          class={`px-2 py-2 cursor-pointer flex w-full justify-center items-center ${
+                            date.getDate() === dtn &&
+                            date.getMonth() === new Date().getMonth()
+                              ? "bg-sky-400 w-8 h-8 text-white rounded-full"
+                              : ""
+                          }`}
                         >
-                          8
-                        </a> */}
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        9
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100">
-                        10
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100">
-                        11
-                      </p>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        12
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        13
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        14
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        15
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        16
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100">
-                        17
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100">
-                        18
-                      </p>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        19
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        20
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        21
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        22
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        23
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100">
-                        24
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100">
-                        25
-                      </p>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        26
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        27
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        28
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        29
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                      <p class="text-base text-gray-500 dark:text-gray-100 font-medium">
-                        30
-                      </p>
-                    </div>
-                  </td>
-                </tr>
+                          {dtn}
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

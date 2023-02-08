@@ -50,24 +50,38 @@ const Navbar = () => {
               >
                 Facilities
               </Link>
-              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-40 p-5 rounded-md shadow-lg border">
-                <Link className="hover:text-sky-400" to="/">
-                  dropdown-1
+              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-52 p-5 rounded-md shadow-lg border">
+                <Link className="hover:text-sky-400" to="/facilities/library">
+                  Library
                 </Link>
-                <Link className="hover:text-sky-400" to="/">
-                  dropdown-2
+                <Link className="hover:text-sky-400" to="/facilities/lab">
+                  Lab
                 </Link>
-                <Link className="hover:text-sky-400" to="/">
-                  dropdown-3
+                <Link
+                  className="hover:text-sky-400"
+                  to="/facilities/co-curricular"
+                >
+                  Co Curricular Activity{" "}
+                </Link>
+                <Link className="hover:text-sky-400" to="/facilities/debate">
+                  Debate Club
                 </Link>
               </div>
             </div>
             <div className="group relative flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400  ">
               <Link
                 className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
-                to="/"
+                to="/admission"
               >
                 Admission
+              </Link>
+            </div>
+            <div className="group relative flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
+              <Link
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
+                to="/"
+              >
+                Academic
               </Link>
               <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-40 p-5 rounded-md shadow-lg border">
                 <Link className="hover:text-sky-400" to="/">
@@ -81,21 +95,24 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
-              <Link
-                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
-                to="/"
-              >
-                Academic
-              </Link>
-            </div>
-            <div className="flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
+            <div className="group relative flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
               <Link
                 className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
                 to="/"
               >
                 Administration
               </Link>
+              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-40 p-5 rounded-md shadow-lg border">
+                <Link className="hover:text-sky-400" to="/">
+                  dropdown-1
+                </Link>
+                <Link className="hover:text-sky-400" to="/">
+                  dropdown-2
+                </Link>
+                <Link className="hover:text-sky-400" to="/">
+                  dropdown-3
+                </Link>
+              </div>
             </div>
             <div
               onClick={() => setTheme(colorTheme)}
