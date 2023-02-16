@@ -5,6 +5,7 @@ import "./App.css";
 import Main from "./layout/Main";
 import About from "./pages/About/About";
 import Admission from "./pages/Admission/Admission";
+import AllNotices from "./pages/AllNotices/AllNotices";
 import CoCurricularActivities from "./pages/Facilities/CoCurricularActivities";
 import DebateClub from "./pages/Facilities/DebateClub";
 import Facilities from "./pages/Facilities/Facilities";
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
         ],
       },
       { path: "/admission", element: <Admission /> },
+      { path: "/notices", element: <AllNotices /> },
     ],
   },
 ]);

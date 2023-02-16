@@ -79,7 +79,7 @@ const Navbar = () => {
             <div className="group relative flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
               <Link
                 className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
-                to="/"
+                to="/notices"
               >
                 Academic
               </Link>
