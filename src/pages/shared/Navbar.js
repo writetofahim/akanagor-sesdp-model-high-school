@@ -1,32 +1,77 @@
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import useColorTheme from "../../hooks/useColorTheme";
 
 const Navbar = () => {
   const [colorTheme, setTheme] = useColorTheme();
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [subLinkId, setSubLinkId] = useState("");
+
   const navItems = [
     { href: "/", name: "Home" },
-    { href: "/", name: "Facilities" },
-    // { href: "#services", name: "Service" },
-    { href: "/", name: "Admission" },
-    { href: "/", name: "Academic" },
-    { href: "/", name: "Administration" },
+    { href: "/admission", name: "Admission" },
+    {
+      href: "/",
+      name: "Academic",
+      subLink: [
+        { id: "aca1", href: "/", name: "Class Routine" },
+        { id: "aca2", href: "/", name: "Academic Rules" },
+      ],
+    },
+    { href: "/", name: "Students" },
+    {
+      href: "/",
+      name: "Results",
+      subLink: [{ id: "res1", href: "/", name: "Board Results" }],
+    },
+    {
+      href: "/",
+      name: "Facilities",
+      subLink: [
+        { id: "fac1", href: "/facilities/library", name: "Library" },
+        { id: "fac1", href: "/facilities/lab", name: "Lab" },
+        { id: "fac1", href: "/facilities/debate", name: "Debate" },
+      ],
+    },
+    {
+      href: "/",
+      name: "Administration",
+      subLink: [{ id: "adm1", href: "/teachers", name: "Teachers" }],
+    },
     { href: "/login", name: "Login" },
+    // { href: "/services", name: "Service" },
   ];
+
+  const handleSubMenu = (id) => {
+    setSubLinkId(id);
+    // e.stopPropagation();
+  };
+
   return (
-    <div className="border-general sticky top-0 z-40 border-b dark:border-gray-700 bg-slate-50/60 backdrop-blur-2xl transition-colors duration-500 dark:bg-[#0B1120]/80 dark:text-white">
-      <div className="max-w-[1200px] w-full mx-auto ">
+    <div
+      className={`border-general sticky top-0 z-40 border-b dark:border-gray-700  transition-colors duration-500  dark:text-white ${
+        !isNavOpen
+          ? "backdrop-blur-md  bg-slate-50/60 dark:bg-[#0B1120]/80 "
+          : "bg-white dark:bg-gray-600"
+      }`}
+    >
+      <div className=" max-w-[1400px] mx-auto ">
+        {/* desktop */}
         <div className={` relative flex items-center justify-between h-16`}>
-          <div className="flex items-center text-lg justify-between px-5 w-full">
+          {/* logo */}
+          <div className="pl-5 flex items-center text-lg justify-between w-full">
             <div className="">
               <a className="" href="/">
                 আকানগর এস ই এস ডিপি মডেল উচ্চ বিদ্যালয়
               </a>
             </div>
-            <div onClick={() => setIsNavOpen(!isNavOpen)} className="lg:hidden">
+            <div
+              onClick={() => setIsNavOpen(!isNavOpen)}
+              className="md:hidden block pr-5"
+            >
               {isNavOpen ? (
                 <FontAwesomeIcon icon={faXmark} />
               ) : (
@@ -34,23 +79,101 @@ const Navbar = () => {
               )}
             </div>
           </div>
-          <div className="items-center lg:flex hidden gap-5 font-semibold">
-            <div className="flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
+          {/* nav */}
+          <div className="pr-5 items-center md:flex hidden font-semibold ">
+            {/* home */}
+            <div className="flex  flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 ">
               <NavLink
-                className="flex items-center text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium"
+                className="flex items-center text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2  font-medium"
                 to="/"
               >
                 Home
               </NavLink>
             </div>
-            <div className="relative group flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 ">
+            {/* admission */}
+            <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400  ">
               <Link
-                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium  flex items-center"
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2  font-medium flex items-center"
+                to="/admission"
+              >
+                Admission
+              </Link>
+            </div>
+            {/* Academic */}
+            <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 py-2">
+              <Link
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2 font-medium flex items-center"
                 to="/"
+              >
+                Academic
+              </Link>
+              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-44 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
+                <Link
+                  className="hover:text-sky-400"
+                  to="/academic/class-routine"
+                >
+                  Class Routine
+                </Link>
+                <Link className="hover:text-sky-400" to="/">
+                  Academic Rules
+                </Link>
+                <Link className="hover:text-sky-400" to="/">
+                  Academic Calender
+                </Link>
+                <Link className="hover:text-sky-400" to="/">
+                  Attendance Sheet
+                </Link>
+              </div>
+            </div>
+            {/* Students */}
+            <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 py-2">
+              <Link
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2 font-medium flex items-center"
+                to="/students"
+              >
+                Students
+              </Link>
+              {/* <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-44 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
+                <Link className="hover:text-sky-400" to="/">
+                  Class Schedule
+                </Link>
+                <Link className="hover:text-sky-400" to="/">
+                  Academic Rules
+                </Link>
+                <Link className="hover:text-sky-400" to="/">
+                  Academic Calender
+                </Link>
+                <Link className="hover:text-sky-400" to="/">
+                  Attendance Sheet
+                </Link>
+              </div> */}
+            </div>
+            {/* Results */}
+            <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 py-2">
+              <Link
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2 font-medium flex items-center"
+                to="/"
+              >
+                Results
+              </Link>
+              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-44 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
+                <Link className="hover:text-sky-400" to="/">
+                  Board Results
+                </Link>
+                <Link className="hover:text-sky-400" to="/">
+                  Results
+                </Link>
+              </div>
+            </div>
+            {/* Facilities */}
+            <div className=" relative group flex flex-shrink-0 items-center  rounded-lg text-gray-400 py-2">
+              <Link
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2  font-medium  flex items-center"
+                to="/facilities"
               >
                 Facilities
               </Link>
-              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-52 p-5 rounded-md shadow-lg border">
+              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-52 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
                 <Link className="hover:text-sky-400" to="/facilities/library">
                   Library
                 </Link>
@@ -68,84 +191,98 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-            <div className="group relative flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400  ">
+            {/* Administration */}
+            <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 py-2">
               <Link
-                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
-                to="/admission"
-              >
-                Admission
-              </Link>
-            </div>
-            <div className="group relative flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
-              <Link
-                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
-                to="/"
-              >
-                Academic
-              </Link>
-              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-40 p-5 rounded-md shadow-lg border">
-                <Link className="hover:text-sky-400" to="/">
-                  dropdown-1
-                </Link>
-                <Link className="hover:text-sky-400" to="/">
-                  dropdown-2
-                </Link>
-                <Link className="hover:text-sky-400" to="/">
-                  dropdown-3
-                </Link>
-              </div>
-            </div>
-            <div className="group relative flex flex-shrink-0 items-center px-2 py-1 rounded-lg text-gray-400 hover:text-sky-400 ">
-              <Link
-                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-3 py-2 text-sm font-medium flex items-center"
+                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2  font-medium flex items-center"
                 to="/"
               >
                 Administration
               </Link>
-              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-40 p-5 rounded-md shadow-lg border">
-                <Link className="hover:text-sky-400" to="/">
-                  dropdown-1
+              <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-52 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
+                <Link className="hover:text-sky-400" to="/teachers">
+                  Teachers
+                </Link>
+                <Link className="hover:text-sky-400" to="/members">
+                  Managing Committee
                 </Link>
                 <Link className="hover:text-sky-400" to="/">
-                  dropdown-2
-                </Link>
-                <Link className="hover:text-sky-400" to="/">
-                  dropdown-3
+                  Staff
                 </Link>
               </div>
             </div>
-            <div
-              onClick={() => setTheme(colorTheme)}
-              className="flex flex-shrink-0 items-center cursor-pointer"
-            >
-              {colorTheme === "dark" ? (
-                <span className="text-gray-700">{darkIcon}</span>
-              ) : (
-                <span className="text-yellow-300">{lightIcon}</span>
-              )}
-            </div>
-            <div
-              className="text-white
-             flex flex-shrink-0 items-center dark:bg-[#38bdf8] bg-[#38bdf8] px-2 py-1 rounded-lg"
-            >
-              <Link className="flex items-center" to="/login">
-                Login
-              </Link>
+            {/* others */}
+            <div className="flex items-center gap-3 border-l dark:border-gray-400 ml-3 pl-3">
+              {/* theme */}
+              <div
+                onClick={() => setTheme(colorTheme)}
+                className="flex flex-shrink-0 items-center cursor-pointer"
+              >
+                {colorTheme === "dark" ? (
+                  <span className="text-gray-700">{darkIcon}</span>
+                ) : (
+                  <span className="text-yellow-300">{lightIcon}</span>
+                )}
+              </div>
+              {/* Login */}
+              <div
+                className="text-white px-2 py-1
+             flex flex-shrink-0 items-center dark:bg-[#38bdf8] bg-[#38bdf8]  rounded-lg"
+              >
+                <Link className="flex items-center" to="/login">
+                  Login
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-        <div className={`${isNavOpen ? "block" : "hidden"}  `}>
-          <div className="md:flex gap-6 dark:text-white md:p-0 p-5 md:mt-10 mt-0 mb-10">
-            <div>
+        {/* mobile */}
+        <div
+          className={`backdrop-blur-2xl absolute top-16 transition-all ease-in-out  duration-300 h-screen z-20 w-60 p-5 ${
+            isNavOpen
+              ? "translate-x-0 opacity-100"
+              : "-translate-x-60 opacity-0"
+          }  `}
+        >
+          <div className="md:flex gap-6 dark:text-white md:p-0  md:mt-10 mt-0 mb-10">
+            <div className="">
               {navItems.map((item, index) => (
-                <Link
-                  to={item.href}
-                  key={index}
-                  onClick={() => setIsNavOpen(!isNavOpen)}
-                  className={` block text-center pb-3  cursor-pointer relative md:text-xl text-base md:my-0 my-3 font-bold `}
-                >
-                  {item.name}
-                </Link>
+                <div key={index}>
+                  <Link
+                    to={item.href}
+                    // onClick={() => setIsNavOpen(!isNavOpen)}
+                    className={` flex items-center justify-between pb-3  cursor-pointer relative md:text-xl text-base md:my-0 my-3`}
+                  >
+                    {item.name}
+                    {item.subLink && item.subLink.length > 0 && (
+                      <button
+                        className=" pl-20"
+                        onClick={() => {
+                          handleSubMenu(item.subLink[0].id);
+                        }}
+                      >
+                        {subLinkId === item.subLink[0].id ? (
+                          <IoIosArrowUp className="text-xl" />
+                        ) : (
+                          <IoIosArrowDown className="text-xl" />
+                        )}
+                      </button>
+                    )}
+                  </Link>
+                  <div className="">
+                    {item.subLink?.map(({ name, href }, subIndex) => (
+                      <Link
+                        key={subIndex}
+                        to={href}
+                        className={`pl-3 pb-3 mb-2 text-md -mt-5 text-gray-700 dark:text-blue-300 flex ${
+                          subLinkId === item.subLink[0].id ? "block" : "hidden"
+                        }`}
+                      >
+                        {name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
 
@@ -168,7 +305,7 @@ const lightIcon = (
   <svg
     stroke="currentColor"
     fill="currentColor"
-    stroke-width="0"
+    strokeWidth="0"
     viewBox="0 0 16 16"
     height="1em"
     width="1em"
@@ -182,7 +319,7 @@ const darkIcon = (
   <svg
     stroke="currentColor"
     fill="currentColor"
-    stroke-width="0"
+    strokeWidth="0"
     viewBox="0 0 16 16"
     height="1em"
     width="1em"
