@@ -8,7 +8,7 @@ const Documents = () => {
         <iframe
           src="https://drive.google.com/file/d/1YiXAYlm-Y7byfzNYunvEd0fmS9zvWJgM/preview"
           title="PDF Viewer"
-          width="100%"
+          width="80%"
           height="500px"
         ></iframe>
       </div>
