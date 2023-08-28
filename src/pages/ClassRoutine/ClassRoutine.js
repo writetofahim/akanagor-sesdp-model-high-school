@@ -44,6 +44,12 @@ const ClassRoutine = () => {
               room: "101",
               teacher: "RI",
             },
+            {
+              sub: "",
+              time: "",
+              room: "-",
+              teacher: "",
+            },
           ],
         },
         {
@@ -77,6 +83,132 @@ const ClassRoutine = () => {
               time: "10:00",
               room: "101",
               teacher: "RI",
+            },
+            {
+              sub: "",
+              time: "",
+              room: "-",
+              teacher: "",
+            },
+          ],
+        },
+        {
+          secondHour: [
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "",
+              time: "",
+              room: "-",
+              teacher: "",
+            },
+          ],
+        },
+        {
+          secondHour: [
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "",
+              time: "",
+              room: "-",
+              teacher: "",
+            },
+          ],
+        },
+        {
+          secondHour: [
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "Ban",
+              time: "10:00",
+              room: "101",
+              teacher: "RI",
+            },
+            {
+              sub: "",
+              time: "",
+              room: "-",
+              teacher: "",
             },
           ],
         },
@@ -119,6 +251,12 @@ const ClassRoutine = () => {
               room: "101",
               teacher: "RI",
             },
+            {
+              sub: "",
+              time: "",
+              room: "-",
+              teacher: "",
+            },
           ],
         },
         {
@@ -152,6 +290,12 @@ const ClassRoutine = () => {
               time: "10:00",
               room: "101",
               teacher: "RI",
+            },
+            {
+              sub: "",
+              time: "",
+              room: "-",
+              teacher: "",
             },
           ],
         },
@@ -193,6 +337,12 @@ const ClassRoutine = () => {
               room: "101",
               teacher: "RI",
             },
+            {
+              sub: "",
+              time: "",
+              room: "-",
+              teacher: "",
+            },
           ],
         },
         {
@@ -227,13 +377,19 @@ const ClassRoutine = () => {
               room: "101",
               teacher: "RI",
             },
+            {
+              sub: "",
+              time: "",
+              room: "-",
+              teacher: "",
+            },
           ],
         },
       ],
     },
   ];
   return (
-    <div className="px-5 h-[calc(100vh-64px)] mt-16">
+    <div className="px-5 h-[calc(100vh-64px)] mt-16 overflow-y-scroll">
       <h1 className="md:text-xl md:font-bold font-semibold text-lg text-center dark:text-white py-2 md:py-3">
         Class <span className="text-orange-300">Routines</span>
       </h1>
@@ -242,38 +398,46 @@ const ClassRoutine = () => {
           <div key={index} className="">
             <div
               onClick={() => handleClass(cd.id)}
-              className="border flex hover:bg-blue-500 cursor-pointer hover:text-white"
+              className={`border md:text-base text-sm dark:border-gray-700 flex hover:bg-blue-500 cursor-pointer hover:text-white ${
+                !showRoutine && "mb-1"
+              }`}
             >
-              <p className="w-28 border-l border-gray-700 text-center py-1">
+              <p className="w-16 md:w-28  dark:border-gray-700 text-center py-1">
                 Sun
               </p>
-              <p className="w-28 border-l border-gray-700 text-center py-1">
+              <p className="w-16 md:w-28 border-l dark:border-gray-700 text-center py-1">
                 Mon
               </p>
-              <p className="w-28 border-l border-gray-700 text-center py-1">
+              <p className="w-16 md:w-28 border-l dark:border-gray-700 text-center py-1">
                 Tue
               </p>
-              <p className="w-28 border-l border-gray-700 text-center py-1">
+              <p className="w-16 md:w-28 border-l dark:border-gray-700 text-center py-1">
                 Wed
               </p>
-              <p className="w-28 border-l border-gray-700 text-center py-1">
+              <p className="w-16 md:w-28 border-l dark:border-gray-700 text-center py-1">
                 Thu
               </p>
-              <p className="w-28 border-l border-gray-700 text-center py-1 text-orange-300 hover:text-orange-200 font-bold">
+              <p className="w-16 md:w-28 border-l dark:border-gray-700 text-center py-1 text-orange-300 hover:text-orange-200 font-bold">
                 Class {cd.className}
               </p>
             </div>
             <table
               className={`${
-                classId === cd.id && showRoutine ? "block" : "hidden"
+                classId === cd.id && showRoutine ? "block mb-1" : "hidden"
               }`}
             >
               <tbody>
                 {cd.hours.map((hourData, hourIndex) => (
-                  <tr key={hourIndex} className="text-center">
+                  <tr
+                    key={hourIndex}
+                    className="text-center md:text-base text-sm"
+                  >
                     {Object.keys(hourData).map((hourKey) =>
                       hourData[hourKey].map((classItem, itemIndex) => (
-                        <td key={itemIndex} className="border w-28 py-1">
+                        <td
+                          key={itemIndex}
+                          className="border dark:border-gray-700 w-16 md:w-28 py-1"
+                        >
                           <p className="font-semibold text-orange-300">
                             {classItem.sub}
                           </p>
