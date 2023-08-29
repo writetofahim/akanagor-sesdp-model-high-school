@@ -1,6 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    // try {
+    //   const response = await axios.post('your-backend-endpoint', formData);
+
+    //   // Handle the response as needed
+    //   if (response.status === 200) {
+    //     // Data successfully submitted
+    //     console.log('Data submitted successfully');
+    //   } else {
+    //     // Handle error
+    //     console.error('Error submitting data');
+    //   }
+    // } catch (error) {
+    //   // Handle error
+    //   console.error('An error occurred:', error);
+    // }
+    console.log(formData);
+    setLoading(false);
+  };
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900 h-screen mt-52 md:mt-0">
@@ -10,7 +42,8 @@ const Login = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                {/* email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -22,11 +55,14 @@ const Login = () => {
                     type="email"
                     name="email"
                     id="email"
+                    onChange={handleChange}
+                    value={formData.email}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required=""
                   />
                 </div>
+                {/* password */}
                 <div>
                   <label
                     htmlFor="password"
@@ -38,11 +74,14 @@ const Login = () => {
                     type="password"
                     name="password"
                     id="password"
+                    onChange={handleChange}
+                    value={formData.password}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
                   />
                 </div>
+
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
                     <div className="flex items-center h-5">
