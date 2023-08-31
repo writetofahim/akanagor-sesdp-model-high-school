@@ -33,7 +33,7 @@ const teachers = [
 
 const Teachers = () => {
   return (
-    <div className="h-[calc(100vh-64px)] pt-16">
+    <div className="h-[calc(100vh-64px)] overflow-x-scroll pt-16">
       <h1 className="text-center text-2xl my-10">All Teachers</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-5">
         {teachers.map((teacher) => (
