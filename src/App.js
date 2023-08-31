@@ -5,17 +5,20 @@ import "./App.css";
 import Main from "./layout/Main";
 import About from "./pages/About/About";
 import Admission from "./pages/Admission/Admission";
+import Chairman from "./pages/Chairman/Chairman";
 import ClassRoutine from "./pages/ClassRoutine/ClassRoutine";
 import Committee from "./pages/Committee/Committee";
 import Documents from "./pages/Documents/Documents";
 import CoCurricularActivities from "./pages/Facilities/CoCurricularActivities";
-import DebateClub from "./pages/Facilities/DebateClub";
 import Facilities from "./pages/Facilities/Facilities";
 import Lab from "./pages/Facilities/Lab";
 import Library from "./pages/Facilities/Library";
+import HeadTeacher from "./pages/HeadTeacher/HeadTeacher";
 import Hero from "./pages/Home/Hero/Hero";
 import Home from "./pages/Home/Home";
 import Login from "./pages/login/Login";
+import Notice from "./pages/Notice/Notice";
+import BoardResults from "./pages/Results/BoardResults";
 import Results from "./pages/Results/Results/Results";
 import Students from "./pages/Students/Students";
 import Teachers from "./pages/Teachers/Teachers";
@@ -36,7 +39,7 @@ const router = createBrowserRouter([
           { path: "library", element: <Library /> },
           { path: "lab", element: <Lab /> },
           { path: "co-curricular", element: <CoCurricularActivities /> },
-          { path: "debate", element: <DebateClub /> },
+          // { path: "debate", element: <DebateClub /> },
         ],
       },
       { path: "/students", element: <Students /> },
@@ -45,7 +48,11 @@ const router = createBrowserRouter([
       { path: "/members", element: <Committee /> },
       { path: "/academic/class-routine", element: <ClassRoutine /> },
       { path: "/results", element: <Results /> },
+      { path: "/board-results", element: <BoardResults /> },
       { path: "/docs", element: <Documents /> },
+      { path: "/head-teacher", element: <HeadTeacher /> },
+      { path: "/chairman", element: <Chairman /> },
+      { path: "/notice", element: <Notice /> },
     ],
   },
 ]);

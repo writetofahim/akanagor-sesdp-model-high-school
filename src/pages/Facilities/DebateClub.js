@@ -9,7 +9,7 @@ const DebateClub = () => {
           src="https://www.cambrian.edu.bd/fontend-assets/images/debate/Debate-03.jpg"
           alt=""
         />
-        <h1 className="py-2 bg-sky-500 mb-5 px-3 font-bold text-white">
+        <h1 className="py-2 bg-orange-300 mb-5 px-3 font-bold text-white">
           জীববিজ্ঞান ব্যাবহারিক ক্লাসে অধ্যায়নরত ক্যামব্রিয়ান স্কুল অ্যান্ড
           কলেজের শিক্ষার্থীরা
         </h1>
@@ -17,7 +17,7 @@ const DebateClub = () => {
 
       {/* photo gallery section*/}
       <div className="mb-10">
-        <h1 className="py-2 text-xl bg-sky-500 my-3 px-3 font-bold text-white">
+        <h1 className="py-2 text-xl bg-orange-300 my-3 px-3 font-bold text-white">
           ফটো গ্যালারি
         </h1>
         <div className="grid lg:grid-cols-3 grid-cols-1 gap-2">

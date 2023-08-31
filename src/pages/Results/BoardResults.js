@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../../components/loader/Loader";
 
-const Documents = () => {
+const BoardResults = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isClicked, setIsClicked] = useState(false);
+  // const [isClicked, setIsClicked] = useState(false);
   const [pdfId, setPdfId] = useState("");
-  const [img, setImg] = useState("");
   const [initialized, setInitialized] = useState(false);
-  const [selectedFileUrl, setSelectedFileUrl] = useState("");
 
   const handleIFrameLoad = () => {
     setIsLoading(false); // Set loading state to false when the iframe content has loaded
@@ -15,7 +13,6 @@ const Documents = () => {
 
   useEffect(() => {
     if (initialized) {
-      setIsClicked(true);
       setIsLoading(true);
     } else {
       console.log("initialized");
@@ -24,14 +21,6 @@ const Documents = () => {
     }
   }, [pdfId]);
 
-  const handleSuccess = (files) => {
-    console.log(files);
-    setImg(files[0].thumbnailLink);
-    if (files.length > 0) {
-      setSelectedFileUrl(files[0].link);
-    }
-  };
-
   const handleClick = (id) => {
     setPdfId(id);
   };
@@ -39,21 +28,19 @@ const Documents = () => {
   const pdfData = [
     {
       id: 1,
-      pdfTitle: "শ্রেনী ভিত্তিক পাঠদান এর স্বীকৃতি",
+      pdfTitle: "SSC 2022",
       pdfLink:
         "https://drive.google.com/file/d/1YiXAYlm-Y7byfzNYunvEd0fmS9zvWJgM/preview",
     },
     {
       id: 2,
-      pdfTitle: "অনুমোদিত শাখার তথ্য",
+      pdfTitle: "SSC 2023",
       pdfLink:
         "https://drive.google.com/file/d/1qkJHBg1lQa0VyuI4S0sTmizRJe4b_dMg/preview",
     },
   ];
 
   const pdfSrc = pdfData.find((pd) => pd.id === pdfId);
-  console.log(isLoading + "isLoading");
-
   return (
     <div className="px-5 h-[calc(100vh-64px)] mt-20">
       {pdfData.map((pd, index) => (
@@ -82,4 +69,4 @@ const Documents = () => {
   );
 };
 
-export default Documents;
+export default BoardResults;

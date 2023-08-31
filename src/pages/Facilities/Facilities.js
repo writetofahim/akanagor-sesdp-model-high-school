@@ -12,7 +12,7 @@ const Facilities = () => {
       title: "Co-curricular Activities",
       to: "/facilities/co-curricular",
     },
-    { id: 4, title: "Debate Club", to: "/facilities/debate" },
+    // { id: 4, title: "Debate Club", to: "/facilities/debate" },
   ];
   const { pathname } = useLocation();
   const selected = facilities.find((item) => item.to === pathname) || {};

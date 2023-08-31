@@ -28,7 +28,7 @@ const studentData = [
 ];
 const Students = () => {
   return (
-    <div className="h-[calc(100vh-64px)] pt-16 mx-auto dark:text-gray-400 p-4">
+    <div className="h-[calc(100vh-64px)] overflow-x-scroll pt-16 mx-auto dark:text-gray-400 p-4">
       <h1 className="text-center text-2xl my-10">Students</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {studentData.map((sd) => (

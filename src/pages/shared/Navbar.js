@@ -17,15 +17,20 @@ const Navbar = () => {
       href: "/",
       name: "Academic",
       subLink: [
-        { id: "aca1", href: "/", name: "Class Routine" },
+        { id: "aca1", href: "/academic/class-routine", name: "Class Routine" },
         { id: "aca2", href: "/", name: "Academic Rules" },
+        { id: "aca3", href: "/", name: "Academic Calender" },
+        { id: "aca4", href: "/", name: "Attendance Sheet" },
       ],
     },
-    { href: "/", name: "Students" },
+    { href: "/students", name: "Students" },
     {
       href: "/",
       name: "Results",
-      subLink: [{ id: "res1", href: "/", name: "Board Results" }],
+      subLink: [
+        { id: "res1", href: "/board-results", name: "Board Results" },
+        { id: "res2", href: "/results", name: "Results" },
+      ],
     },
     {
       href: "/",
@@ -39,10 +44,13 @@ const Navbar = () => {
     {
       href: "/",
       name: "Administration",
-      subLink: [{ id: "adm1", href: "/teachers", name: "Teachers" }],
+      subLink: [
+        { id: "adm1", href: "/teachers", name: "Teachers" },
+        { id: "adm1", href: "/members", name: "Managing Committee" },
+      ],
     },
     { href: "/login", name: "Login" },
-    // { href: "/services", name: "Service" },
+    { href: "/docs", name: "Documents" },
   ];
 
   const handleSubMenu = (id) => {
@@ -70,7 +78,7 @@ const Navbar = () => {
             </div>
             <div
               onClick={() => setIsNavOpen(!isNavOpen)}
-              className="md:hidden block pr-5"
+              className="lg:hidden block pr-5"
             >
               {isNavOpen ? (
                 <FontAwesomeIcon icon={faXmark} />
@@ -80,7 +88,7 @@ const Navbar = () => {
             </div>
           </div>
           {/* nav */}
-          <div className="pr-5 items-center md:flex hidden font-semibold ">
+          <div className="pr-5 items-center lg:flex hidden font-semibold ">
             {/* home */}
             <div className="flex  flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 ">
               <NavLink
@@ -157,7 +165,7 @@ const Navbar = () => {
                 Results
               </Link>
               <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-44 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
-                <Link className="hover:text-sky-400" to="/">
+                <Link className="hover:text-sky-400" to="/board-results">
                   Board Results
                 </Link>
                 <Link className="hover:text-sky-400" to="/results">
@@ -257,6 +265,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
         {/* mobile */}
         <div
           className={`backdrop-blur-2xl absolute top-16 transition-all ease-in-out  duration-300 h-screen z-20 w-60 p-5 ${
@@ -265,37 +274,64 @@ const Navbar = () => {
               : "-translate-x-60 opacity-0"
           }  `}
         >
-          <div className="md:flex gap-6 dark:text-white md:p-0  md:mt-10 mt-0 mb-10">
+          <div className="lg:flex gap-6 dark:text-white md:p-0  md:mt-10 mt-0 mb-10">
             <div className="">
               {navItems.map((item, index) => (
                 <div key={index}>
-                  <Link
-                    to={item.href}
-                    // onClick={() => setIsNavOpen(!isNavOpen)}
-                    className={` flex items-center justify-between pb-3  cursor-pointer relative md:text-xl text-base md:my-0 my-3`}
-                  >
-                    {item.name}
-                    {item.subLink && item.subLink.length > 0 && (
-                      <button
-                        className=" pl-20"
-                        onClick={() => {
-                          handleSubMenu(item.subLink[0].id);
-                        }}
-                      >
-                        {subLinkId === item.subLink[0].id ? (
-                          <IoIosArrowUp className="text-xl" />
-                        ) : (
-                          <IoIosArrowDown className="text-xl" />
-                        )}
-                      </button>
-                    )}
-                  </Link>
+                  {item.subLink ? (
+                    <div
+                      className={` flex items-center justify-between pb-3  cursor-pointer relative md:text-xl text-base md:my-0 my-3`}
+                    >
+                      {item.name}
+                      {item.subLink && item.subLink.length > 0 && (
+                        <button
+                          className=" pl-10 "
+                          onClick={() => {
+                            if (subLinkId === item.subLink[0].id) {
+                              setSubLinkId(null);
+                            } else {
+                              handleSubMenu(item.subLink[0].id);
+                            }
+                          }}
+                        >
+                          {subLinkId === item.subLink[0].id ? (
+                            <IoIosArrowUp className="text-xl" />
+                          ) : (
+                            <IoIosArrowDown className="text-xl" />
+                          )}
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      onClick={() => setIsNavOpen(!isNavOpen)}
+                      className={` flex items-center justify-between pb-3  cursor-pointer relative md:text-xl text-base md:my-0 my-3`}
+                    >
+                      {item.name}
+                      {item.subLink && item.subLink.length > 0 && (
+                        <button
+                          className=" pl-10 "
+                          onClick={() => {
+                            handleSubMenu(item.subLink[0].id);
+                          }}
+                        >
+                          {subLinkId === item.subLink[0].id ? (
+                            <IoIosArrowUp className="text-xl" />
+                          ) : (
+                            <IoIosArrowDown className="text-xl" />
+                          )}
+                        </button>
+                      )}
+                    </Link>
+                  )}
                   <div className="">
                     {item.subLink?.map(({ name, href }, subIndex) => (
                       <Link
                         key={subIndex}
+                        onClick={() => setIsNavOpen(!isNavOpen)}
                         to={href}
-                        className={`pl-3 pb-3 mb-2 text-md -mt-5 text-gray-700 dark:text-blue-300 flex ${
+                        className={`pl-3 pb-3 mb-2 text-md  text-gray-700 dark:text-blue-300 flex ${
                           subLinkId === item.subLink[0].id ? "block" : "hidden"
                         }`}
                       >
