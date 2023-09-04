@@ -111,12 +111,9 @@ const Navbar = () => {
             </div> */}
             {/* Academic */}
             <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 py-2">
-              <Link
-                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2 font-medium flex items-center"
-                to="/"
-              >
+              <div className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2 font-medium flex items-center">
                 Academic
-              </Link>
+              </div>
               <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-44 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
                 <Link
                   className="hover:text-sky-400"
@@ -160,12 +157,9 @@ const Navbar = () => {
             </div>
             {/* Results */}
             <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 py-2">
-              <Link
-                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2 font-medium flex items-center"
-                to="/"
-              >
+              <div className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2 font-medium flex items-center">
                 Results
-              </Link>
+              </div>
               <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-44 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
                 <Link className="hover:text-sky-400" to="/board-results">
                   Board Results
@@ -177,12 +171,9 @@ const Navbar = () => {
             </div>
             {/* Facilities */}
             <div className=" relative group flex flex-shrink-0 items-center  rounded-lg text-gray-400 py-2">
-              <Link
-                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2  font-medium  flex items-center"
-                to="/facilities"
-              >
+              <div className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2  font-medium  flex items-center">
                 Facilities
-              </Link>
+              </div>
               <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-52 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
                 <Link className="hover:text-sky-400" to="/facilities/library">
                   Library
@@ -203,12 +194,9 @@ const Navbar = () => {
             </div>
             {/* Administration */}
             <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 py-2">
-              <Link
-                className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2  font-medium flex items-center"
-                to="/"
-              >
+              <div className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2  font-medium flex items-center">
                 Administration
-              </Link>
+              </div>
               <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-12 left-0 w-52 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
                 <Link className="hover:text-sky-400" to="/teachers">
                   Teachers
