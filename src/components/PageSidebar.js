@@ -8,7 +8,7 @@ const PageSidebar = ({ sectionName, links }) => {
   return (
     <div className="md:w-[25%] w-full">
       <h1 className="text-xl font-bold dark:text-gray-200">
-        Our <span className="text-orange-300">{sectionName}</span>
+        <span className="text-orange-300">{sectionName}</span>
       </h1>
       <div className="border-t border-2 w-20 mt-2 border-orange-300"></div>
       <div className="flex flex-col gap-3 mt-5">

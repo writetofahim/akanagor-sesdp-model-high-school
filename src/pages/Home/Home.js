@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
 import classIcon from "../../assets/icons/class.svg";
@@ -7,48 +7,73 @@ import student from "../../assets/icons/student.svg";
 import teacher from "../../assets/icons/teacher.svg";
 import principal from "../../assets/images/teacher/principal.PNG";
 import vice_principal from "../../assets/images/teacher/vice_principal1.jpg";
+import axiosInstance from "../../utils/axiosInstance";
 import Hero from "./Hero/Hero";
 const Home = () => {
-  // const handleClick = () => {
-  //   toast.success("Remember recorded!");
-  // };
-  const notices = [
-    {
-      id: 1,
-      title: "notice-title-1",
-      date: "10/12/2020",
-      description:
-        "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
-    },
-    {
-      id: 2,
-      title: "notice-title-2",
-      date: "10/13/2020",
-      description:
-        "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
-    },
-    {
-      id: 3,
-      title: "notice-title-3",
-      date: "10/16/2020",
-      description:
-        "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
-    },
-    {
-      id: 4,
-      title: "notice-title-3",
-      date: "10/16/2020",
-      description:
-        "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
-    },
-    {
-      id: 5,
-      title: "notice-title-3",
-      date: "10/16/2020",
-      description:
-        "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
-    },
-  ];
+  const [news, setNews] = useState({});
+  const [notices, setNotice] = useState([]);
+  const baseURL = axiosInstance.defaults.baseURL;
+
+  // console.log(baseURL);
+  useEffect(() => {
+    axiosInstance
+      .get("news")
+      .then((response) => {
+        setNews(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching document:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axiosInstance
+      .get(`notice/title/${1}`)
+      .then((response) => {
+        console.log(response.data);
+        setNotice(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching document:", error);
+      });
+  }, []);
+  // const notices = [
+  //   {
+  //     id: 1,
+  //     title: "notice-title-1",
+  //     date: "10/12/2020",
+  //     description:
+  //       "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "notice-title-2",
+  //     date: "1/13/2020",
+  //     description:
+  //       "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "notice-title-3",
+  //     date: "10/16/2020",
+  //     description:
+  //       "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "notice-title-3",
+  //     date: "10/16/2020",
+  //     description:
+  //       "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "notice-title-3",
+  //     date: "10/16/2020",
+  //     description:
+  //       "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
+  //   },
+  // ];
   const data = [
     {
       name: "Classes",
@@ -72,7 +97,15 @@ const Home = () => {
     },
   ];
   const handleNotice = (notice) => {
-    console.log(notice);
+    // console.log(notice);
+    // axiosInstance
+    //   .get(`notice/${notice._id}`)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
   return (
     <div>
@@ -103,8 +136,7 @@ const Home = () => {
               className="md:text-lg text-md items-center"
               pauseOnHover={true}
             >
-              🌟 ১৫ আগস্ট-২০২৩ জাতির পিতা বঙ্গবন্ধু শেখ মুজিবুর রহমানের ৪৮তম
-              শাহাদাত বার্ষিকী উপলক্ষে চিত্রাঙ্কন প্রতিযোগিতার ফলাফল
+              {news.news}
             </Marquee>
             {/* </div> */}
           </section>
@@ -167,14 +199,18 @@ const Home = () => {
               </h1>
               <div className="space-y-2">
                 {notices.map((notice, index) => (
-                  <Link
-                    to={`notice`}
+                  <a
                     key={index}
-                    onClick={() => handleNotice(notice)}
+                    // onClick={() => handleNotice(notice)}
+                    href={`${baseURL}notice/${notice._id}`}
                     className="flex cursor-pointer"
                   >
                     <p className="bg-orange-300 text-white rounded-l-sm py-2 px-3 flex flex-col">
-                      <span>{new Date(notice.date).getMonth() + 1}</span>
+                      <span>
+                        {new Date(notice.date).toLocaleString("en-US", {
+                          month: "short",
+                        })}
+                      </span>
                       <span>{new Date(notice.date).getDate()}</span>
                     </p>
                     <p
@@ -184,7 +220,7 @@ const Home = () => {
                     >
                       {notice.title}
                     </p>
-                  </Link>
+                  </a>
                 ))}
                 <div className=" flex justify-center pt-3">
                   <button className="bg-orange-300 hover:bg-orange-500 active:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-700 rounded-full px-5 py-1 text-white  bottom-5">
@@ -298,7 +334,10 @@ const Home = () => {
             <div className="flex">
               <div className="flex mx-auto gap-2 my-3">
                 {data.map(({ name, number, icon }, index) => (
-                  <div className="flex gap-2 border rounded p-3">
+                  <div
+                    key={index}
+                    className="flex gap-2 border dark:border-gray-700 rounded p-3"
+                  >
                     <img src={icon} className="w-20 h-20" alt="" />
                     <div>
                       <p>{name}</p>

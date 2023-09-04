@@ -13,7 +13,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <h3 className="text-xl items-center">Usefull Links</h3>
+          <h3 className="text-xl items-center">Useful Links</h3>
           <ul className="mb-3">
             <li className="hover:text-sky-400 border-b py-1 dark:border-gray-700">
               <a

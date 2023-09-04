@@ -1,11 +1,13 @@
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContexts";
 import useColorTheme from "../../hooks/useColorTheme";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   const [colorTheme, setTheme] = useColorTheme();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [subLinkId, setSubLinkId] = useState("");
@@ -255,11 +257,11 @@ const Navbar = () => {
               </div>
               {/* Login */}
               <div
-                className="text-white px-2 py-1
-             flex flex-shrink-0 items-center dark:bg-[#38bdf8] bg-[#38bdf8]  rounded-lg"
+                className="text-white px-3 py-1
+             flex flex-shrink-0 items-center dark:bg-[#38bdf8] bg-[#38bdf8]  rounded-full"
               >
                 <Link className="flex items-center" to="/login">
-                  Login
+                  {user ? user.user.fullName : "Login"}
                 </Link>
               </div>
             </div>

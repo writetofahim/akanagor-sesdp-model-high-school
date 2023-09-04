@@ -2,8 +2,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import { AuthContextProvider } from "./context/AuthContexts";
 import Main from "./layout/Main";
 import About from "./pages/About/About";
+import Admin from "./pages/Admin/Admin";
+import CRUDNotice from "./pages/Admin/CRUDNotice";
+import News from "./pages/Admin/News";
 import Admission from "./pages/Admission/Admission";
 import Chairman from "./pages/Chairman/Chairman";
 import ClassRoutine from "./pages/ClassRoutine/ClassRoutine";
@@ -53,6 +57,14 @@ const router = createBrowserRouter([
       { path: "/head-teacher", element: <HeadTeacher /> },
       { path: "/chairman", element: <Chairman /> },
       { path: "/notice", element: <Notice /> },
+      {
+        path: "/admin",
+        element: <Admin />,
+        children: [
+          { path: "news", element: <News /> },
+          { path: "notice", element: <CRUDNotice /> },
+        ],
+      },
     ],
   },
 ]);
@@ -60,7 +72,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div>
-      <RouterProvider router={router} />
+      <AuthContextProvider>
+        <RouterProvider router={router} />
+      </AuthContextProvider>
       <ToastContainer />
     </div>
   );
