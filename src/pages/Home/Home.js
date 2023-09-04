@@ -331,8 +331,8 @@ const Home = () => {
           {/* at a glance */}
           <div className="">
             <h3 className="text-center text-xl">Our Institution at a glance</h3>
-            <div className="flex">
-              <div className="flex mx-auto gap-2 my-3">
+            <div className="flex ">
+              <div className="grid md:grid-cols-4 grid-cols-2 mx-auto gap-2 my-3">
                 {data.map(({ name, number, icon }, index) => (
                   <div
                     key={index}

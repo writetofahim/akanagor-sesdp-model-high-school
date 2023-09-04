@@ -8,6 +8,7 @@ const CRUDNotice = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
+    date: "",
   });
   const [loading, setLoading] = useState(false);
   const [editorHtml, setEditorHtml] = useState("");
@@ -31,6 +32,7 @@ const CRUDNotice = () => {
         setLoading(false);
         toast.success("New Notice Added");
       });
+      console.log(formData);
     } catch (error) {
       toast.error("Server internal error, Please try again later");
     }
@@ -39,6 +41,8 @@ const CRUDNotice = () => {
     <div className="">
       <h3 className="text-center font-semibold">Notice</h3>
       <form action="" onSubmit={handleForm}>
+        <input type="date" name="date" onChange={handleChange} />
+        {/* title */}
         <div className="my-4">
           <label
             htmlFor="input"
