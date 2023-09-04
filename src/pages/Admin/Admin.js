@@ -5,10 +5,10 @@ import PageTopBanner from "../../components/PageTopBanner";
 
 const Admin = () => {
   const facilities = [
-    { id: 1, title: "Admission", to: "/admission" },
+    { id: 1, title: "Admission", to: "/admin/admission" },
     { id: 2, title: "News", to: "/admin/news" },
     { id: 3, title: "Notice", to: "/admin/notice" },
-    { id: 4, title: "Results", to: "/facilities/lab" },
+    // { id: 4, title: "Results", to: "/admin/lab" },
     // { id: 5, title: "Results", to: "/facilities/lab" },
   ];
   const { pathname } = useLocation();
@@ -16,9 +16,9 @@ const Admin = () => {
   return (
     <div className="h-[calc(100vh-64px)] overflow-x-scroll">
       <PageTopBanner title={selected?.title || "Admin"} />
-      <div className="max-w-[1200px] border w-full mx-auto p-3 md:flex gap-5">
+      <div className="max-w-[1200px] w-full mx-auto p-3 md:flex gap-5">
         <PageSidebar sectionName={"Admin"} links={facilities} />
-        <div className=" w-full">
+        <div className="p-4 w-full">
           <Outlet />
         </div>
       </div>

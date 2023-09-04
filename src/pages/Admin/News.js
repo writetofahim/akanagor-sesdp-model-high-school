@@ -49,7 +49,7 @@ const News = () => {
       ) : (
         <>
           <h3 className="text-center font-semibold">Edit News</h3>
-          <div className="m-4">
+          <div className="">
             <label
               htmlFor="input"
               className="block text-sm font-medium text-gray-700"

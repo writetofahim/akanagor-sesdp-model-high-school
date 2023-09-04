@@ -6,6 +6,7 @@ import { AuthContextProvider } from "./context/AuthContexts";
 import Main from "./layout/Main";
 import About from "./pages/About/About";
 import Admin from "./pages/Admin/Admin";
+import AdmissionAdmin from "./pages/Admin/AdmissionAdmin";
 import CRUDNotice from "./pages/Admin/CRUDNotice";
 import News from "./pages/Admin/News";
 import Admission from "./pages/Admission/Admission";
@@ -63,6 +64,7 @@ const router = createBrowserRouter([
         children: [
           { path: "news", element: <News /> },
           { path: "notice", element: <CRUDNotice /> },
+          { path: "admission", element: <AdmissionAdmin /> },
         ],
       },
     ],

@@ -41,7 +41,21 @@ const CRUDNotice = () => {
     <div className="">
       <h3 className="text-center font-semibold">Notice</h3>
       <form action="" onSubmit={handleForm}>
-        <input type="date" name="date" onChange={handleChange} />
+        <div className="my-4">
+          <label
+            htmlFor="date"
+            className=" block text-sm font-medium text-gray-700"
+          >
+            Date
+          </label>
+          <input
+            required={true}
+            type="date"
+            name="date"
+            className="mt-1 py-1 px-2"
+            onChange={handleChange}
+          />
+        </div>
         {/* title */}
         <div className="my-4">
           <label
@@ -75,7 +89,18 @@ const CRUDNotice = () => {
             className="mt-1 min-h-[200px] p-2 w-full border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-300"
           />
         </div> */}
-        <RichTextEditor setEditorHtml={setEditorHtml} editorHtml={editorHtml} />
+        <div>
+          <label
+            htmlFor="desc"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Description
+          </label>
+          <RichTextEditor
+            setEditorHtml={setEditorHtml}
+            editorHtml={editorHtml}
+          />
+        </div>
         <button
           type="submit"
           className="mx-auto my-3 flex justify-center items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

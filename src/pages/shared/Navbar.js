@@ -14,7 +14,7 @@ const Navbar = () => {
 
   const navItems = [
     { href: "/", name: "Home" },
-    { href: "/admission", name: "Admission" },
+    // { href: "/admission", name: "Admission" },
     {
       href: "/",
       name: "Academic",
@@ -101,14 +101,14 @@ const Navbar = () => {
               </NavLink>
             </div>
             {/* admission */}
-            <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400  ">
+            {/* <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400  ">
               <Link
                 className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2  font-medium flex items-center"
                 to="/admission"
               >
                 Admission
               </Link>
-            </div>
+            </div> */}
             {/* Academic */}
             <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 py-2">
               <Link
