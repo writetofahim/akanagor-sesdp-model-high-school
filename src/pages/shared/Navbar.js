@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/AuthContexts";
 import useColorTheme from "../../hooks/useColorTheme";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const [colorTheme, setTheme] = useColorTheme();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [subLinkId, setSubLinkId] = useState("");
@@ -209,6 +209,7 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
+
             {/* Docs */}
             <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 py-2">
               <Link
@@ -230,6 +231,18 @@ const Navbar = () => {
               </div> */}
             </div>
 
+            {/* admin */}
+            {user && (
+              <div className="group relative flex flex-shrink-0 items-center  rounded-lg text-gray-400 hover:text-sky-400 py-2">
+                <Link
+                  className="text-slate-700 hover:bg-gray-800 hover:text-white dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200 rounded-md px-2 py-2  font-medium flex items-center"
+                  to="/admin"
+                >
+                  Admin
+                </Link>
+              </div>
+            )}
+
             {/* others */}
             <div className="flex items-center gap-3 border-l dark:border-gray-400 ml-3 pl-3">
               {/* theme */}
@@ -246,10 +259,25 @@ const Navbar = () => {
               {/* Login */}
               <div
                 className="text-white px-3 py-1
-             flex flex-shrink-0 items-center dark:bg-[#38bdf8] bg-[#38bdf8]  rounded-full"
+             flex flex-shrink-0 items-center dark:bg-[#38bdf8] bg-[#38bdf8]  rounded-full  "
               >
                 <Link className="flex items-center" to="/login">
-                  {user ? user.user.fullName : "Login"}
+                  {user ? (
+                    <p className="group relative">
+                      {user.user}
+                      <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-6 -right-10 w-32 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
+                        <p
+                          onClick={() => logout()}
+                          className="hover:text-sky-400 cursor-pointer"
+                        >
+                          {" "}
+                          Logout
+                        </p>
+                      </div>
+                    </p>
+                  ) : (
+                    "Login"
+                  )}
                 </Link>
               </div>
             </div>

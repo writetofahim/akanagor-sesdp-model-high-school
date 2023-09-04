@@ -9,11 +9,14 @@ export const AuthContextProvider = ({ children }) => {
   const login = async (credentials) => {
     try {
       const res = await axiosInstance.post("/auth/login", credentials);
+      console.log(res.data);
       setUser(res.data);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       toast.success(res.data.message);
     } catch (error) {
       toast.error(error.response.data.message);
+      console.error("Failed to login:", error);
+      throw error;
     }
   };
 

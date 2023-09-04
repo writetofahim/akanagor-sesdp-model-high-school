@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContexts";
 
 const Login = () => {
-  const { login, user } = useContext(AuthContext);
-  console.log(user);
+  const { login } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -18,10 +17,15 @@ const Login = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
-    await login(formData);
-    setLoading(false);
-    navigate("/admin");
+    try {
+      setLoading(true);
+      await login(formData);
+      setLoading(false);
+      navigate("/admin");
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
   };
 
   return (

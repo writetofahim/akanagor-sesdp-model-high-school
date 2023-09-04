@@ -51,7 +51,7 @@ export const SingleSlide = (props) => {
         />
         <div className="absolute left-0  bottom-0  md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-auto w-full">
           {/* text */}
-          <div className="left backdrop-blur-[2px] rounded-md bg-green-200/50 p-5">
+          <div className="left backdrop-blur-[2px] md:rounded-md bg-green-200/50 p-5">
             <h2 className=" text-md md:text-3xl text-center md:text-left font-bold mb-2">
               {props.title}
             </h2>
