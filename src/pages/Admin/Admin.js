@@ -11,7 +11,7 @@ const Admin = () => {
     { id: 1, title: "Admission", to: "/admin/admission" },
     { id: 2, title: "News", to: "/admin/news" },
     { id: 3, title: "Notice", to: "/admin/notice" },
-    // { id: 4, title: "Results", to: "/admin/lab" },
+    { id: 4, title: "Routines", to: "/admin/routines" },
     // { id: 5, title: "Results", to: "/facilities/lab" },
   ];
   useEffect(() => {

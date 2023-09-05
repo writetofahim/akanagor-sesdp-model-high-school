@@ -9,6 +9,7 @@ import Admin from "./pages/Admin/Admin";
 import AdmissionAdmin from "./pages/Admin/AdmissionAdmin";
 import CRUDNotice from "./pages/Admin/CRUDNotice";
 import News from "./pages/Admin/News";
+import RoutineAdmin from "./pages/Admin/RoutineAdmin";
 import Admission from "./pages/Admission/Admission";
 import Chairman from "./pages/Chairman/Chairman";
 import ClassRoutine from "./pages/ClassRoutine/ClassRoutine";
@@ -65,6 +66,7 @@ const router = createBrowserRouter([
           { path: "news", element: <News /> },
           { path: "notice", element: <CRUDNotice /> },
           { path: "admission", element: <AdmissionAdmin /> },
+          { path: "routines", element: <RoutineAdmin /> },
         ],
       },
     ],
