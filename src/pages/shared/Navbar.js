@@ -31,7 +31,7 @@ const Navbar = () => {
       name: "Results",
       subLink: [
         { id: "res1", href: "/board-results", name: "Board Results" },
-        { id: "res2", href: "/results", name: "Results" },
+        { id: "res2", href: "/regular-results", name: "Regular Results" },
       ],
     },
     {
@@ -49,10 +49,12 @@ const Navbar = () => {
       subLink: [
         { id: "adm1", href: "/teachers", name: "Teachers" },
         { id: "adm1", href: "/members", name: "Managing Committee" },
+        { id: "adm1", href: "/staffs", name: "Staff" },
       ],
     },
-    { href: "/login", name: "Login" },
     { href: "/docs", name: "Documents" },
+    { href: "/admin", name: "Admin" },
+    { href: "/login", name: "Login" },
   ];
 
   const handleSubMenu = (id) => {
@@ -164,8 +166,8 @@ const Navbar = () => {
                 <Link className="hover:text-sky-400" to="/board-results">
                   Board Results
                 </Link>
-                <Link className="hover:text-sky-400" to="/results">
-                  Results
+                <Link className="hover:text-sky-400" to="/regular-results">
+                  Regular Results
                 </Link>
               </div>
             </div>
@@ -204,7 +206,7 @@ const Navbar = () => {
                 <Link className="hover:text-sky-400" to="/members">
                   Managing Committee
                 </Link>
-                <Link className="hover:text-sky-400" to="/">
+                <Link className="hover:text-sky-400" to="/staffs">
                   Staff
                 </Link>
               </div>
@@ -286,7 +288,7 @@ const Navbar = () => {
 
         {/* mobile */}
         <div
-          className={`backdrop-blur-2xl absolute top-16 transition-all ease-in-out  duration-300 h-screen z-20 w-60 p-5 ${
+          className={`backdrop-blur-sm bg-gray-600/50 text-white absolute top-16 transition-all ease-in-out  duration-300 h-screen z-20 w-60 p-5 ${
             isNavOpen
               ? "translate-x-0 opacity-100"
               : "-translate-x-60 opacity-0"
@@ -296,7 +298,7 @@ const Navbar = () => {
             <div className="">
               {navItems.map((item, index) => (
                 <div key={index}>
-                  {item.subLink ? (
+                  {item?.subLink ? (
                     <div
                       className={` flex items-center justify-between pb-3  cursor-pointer relative md:text-xl text-base md:my-0 my-3`}
                     >
@@ -321,27 +323,31 @@ const Navbar = () => {
                       )}
                     </div>
                   ) : (
-                    <Link
-                      to={item.href}
-                      onClick={() => setIsNavOpen(!isNavOpen)}
-                      className={` flex items-center justify-between pb-3  cursor-pointer relative md:text-xl text-base md:my-0 my-3`}
-                    >
-                      {item.name}
-                      {item.subLink && item.subLink.length > 0 && (
-                        <button
-                          className=" pl-10 "
-                          onClick={() => {
-                            handleSubMenu(item.subLink[0].id);
-                          }}
+                    <>
+                      {(user || item.name !== "Admin") && (
+                        <Link
+                          to={item.href}
+                          onClick={() => setIsNavOpen(!isNavOpen)}
+                          className={` flex items-center justify-between pb-3  cursor-pointer relative md:text-xl text-base md:my-0 my-3`}
                         >
-                          {subLinkId === item.subLink[0].id ? (
-                            <IoIosArrowUp className="text-xl" />
-                          ) : (
-                            <IoIosArrowDown className="text-xl" />
+                          {item.name}
+                          {item?.subLink && item?.subLink.length > 0 && (
+                            <button
+                              className=" pl-10 "
+                              onClick={() => {
+                                handleSubMenu(item?.subLink[0].id);
+                              }}
+                            >
+                              {subLinkId === item?.subLink[0].id ? (
+                                <IoIosArrowUp className="text-xl" />
+                              ) : (
+                                <IoIosArrowDown className="text-xl" />
+                              )}
+                            </button>
                           )}
-                        </button>
+                        </Link>
                       )}
-                    </Link>
+                    </>
                   )}
                   <div className="">
                     {item.subLink?.map(({ name, href }, subIndex) => (

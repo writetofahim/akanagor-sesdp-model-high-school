@@ -1,3 +1,4 @@
+import Pagination from "@mui/material/Pagination";
 import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import Fade from "react-reveal/Fade";
@@ -8,12 +9,14 @@ import student from "../../assets/icons/student.svg";
 import teacher from "../../assets/icons/teacher.svg";
 import principal from "../../assets/images/teacher/principal.PNG";
 import vice_principal from "../../assets/images/teacher/vice_principal1.jpg";
+import RecentWorks from "../../components/RecentWorks/RecentWorks";
 import axiosInstance from "../../utils/axiosInstance";
 import Hero from "./Hero/Hero";
 
 const Home = () => {
   const [news, setNews] = useState({});
   const [notices, setNotice] = useState([]);
+  const [page, setPage] = useState(1);
   const baseURL = axiosInstance.defaults.baseURL;
 
   // console.log(baseURL);
@@ -30,15 +33,14 @@ const Home = () => {
 
   useEffect(() => {
     axiosInstance
-      .get(`notice/title/${1}`)
+      .get(`notice/title/${page}`)
       .then((response) => {
-        console.log(response.data);
         setNotice(response.data);
       })
       .catch((error) => {
         console.error("Error fetching document:", error);
       });
-  }, []);
+  }, [page]);
   // const notices = [
   //   {
   //     id: 1,
@@ -98,6 +100,9 @@ const Home = () => {
       icon: staff,
     },
   ];
+  const handlePageChange = (event, page) => {
+    setPage(page);
+  };
   // const handleNotice = (notice) => {
   // console.log(notice);
   // axiosInstance
@@ -198,19 +203,19 @@ const Home = () => {
                 </div>
               </div>
               {/* notice */}
-              <div className="border dark:border-gray-700 w-full  lg:w-[35%] relative p-5 rounded">
+              <div className="border dark:border-gray-700 w-full  lg:w-[35%] relative p-3 rounded">
                 <h1 className="mb-3 text-3xl font-medium text-center">
                   Notice <span className="text-orange-300">Board</span>
                 </h1>
                 <div className="space-y-2">
-                  {notices.map((notice, index) => (
+                  {notices.documents?.map((notice, index) => (
                     <a
                       key={index}
                       // onClick={() => handleNotice(notice)}
                       href={`${baseURL}notice/${notice._id}`}
                       className="flex cursor-pointer"
                     >
-                      <p className="bg-orange-300 text-white rounded-l-sm py-2 px-3 flex flex-col">
+                      <p className="bg-orange-300 text-sm text-white text-center rounded-l-sm py-2 px-2 flex flex-col">
                         <span>
                           {new Date(notice.date).toLocaleString("en-US", {
                             month: "short",
@@ -228,9 +233,12 @@ const Home = () => {
                     </a>
                   ))}
                   <div className=" flex justify-center pt-3">
-                    <button className="bg-orange-300 hover:bg-orange-500 active:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-700 rounded-full px-5 py-1 text-white  bottom-5">
-                      Show all
-                    </button>
+                    <Pagination
+                      count={notices?.pages}
+                      color="primary"
+                      size="small"
+                      onChange={handlePageChange}
+                    />
                   </div>
                 </div>
               </div>
@@ -240,85 +248,17 @@ const Home = () => {
           <Fade bottom>
             <section className=" w-full lg:flex justify-between">
               {/* events */}
-              <div className=" lg:w-[65%] w-full ">
-                <h2 className=" text-center mb-2 text-xl">
-                  Recent <span className="text-orange-300">Events</span>
-                </h2>
-                <div className=" overflow-hidden mt-2 lg:flex flex-wrap gap-2 justify-center">
-                  <div className="flex border dark:border-gray-700 p-3 mb-3 rounded space-x-2 lg:w-auto w-full">
-                    <img
-                      className="
-                    w-40 ring-2 ring-orange-300 rounded"
-                      src="https://iwfstaff.com.au/wp-content/uploads/2017/12/placeholder-image.png"
-                      alt=""
-                    />
-                    <div className="text-center">
-                      <p className="text-s">Achievements-1</p>
-                      <p className="text-xs">01-05-2020</p>
-                    </div>
-                  </div>
-                  <div className="flex border dark:border-gray-700 p-3 mb-3 rounded space-x-2 lg:w-auto w-full">
-                    <img
-                      className="
-                    w-40 ring-2 ring-orange-300 rounded"
-                      src="https://iwfstaff.com.au/wp-content/uploads/2017/12/placeholder-image.png"
-                      alt=""
-                    />
-                    <div>
-                      <h3>Achievements-1</h3>
-                      <p
-                        className="
-                      text-xs"
-                      >
-                        01-05-2020
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex border dark:border-gray-700 p-3 mb-3 rounded space-x-2 lg:w-auto w-full">
-                    <img
-                      className="
-                    w-40 ring-2 ring-orange-300 rounded"
-                      src="https://iwfstaff.com.au/wp-content/uploads/2017/12/placeholder-image.png"
-                      alt=""
-                    />
-                    <div>
-                      <h3>Achievements-1</h3>
-                      <p
-                        className="
-                      text-xs"
-                      >
-                        01-05-2020
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex border dark:border-gray-700 p-3 mb-3 rounded space-x-2 lg:w-auto w-full">
-                    <img
-                      className="
-                    w-40 ring-2 ring-orange-300 rounded"
-                      src="https://iwfstaff.com.au/wp-content/uploads/2017/12/placeholder-image.png"
-                      alt=""
-                    />
-                    <div>
-                      <h3>Achievements-1</h3>
-                      <p
-                        className="
-                      text-xs"
-                      >
-                        01-05-2020
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <RecentWorks />
+
               {/* about */}
-              <div className=" md:ml-2 mb-3 justify-center lg:w-[35%] w-full">
+              <div className="md:border-l dark:border-gray-700 md:ml-2 mb-3 justify-center lg:w-[35%] w-full">
                 {/* <Calendar /> */}
                 <h3 className="text-center mb-2 text-xl">
                   Discover Akanagar{" "}
                   <span className="text-orange-300">SESDP</span> Model High
                   School
                 </h3>
-                <div className="border dark:border-gray-700 rounded p-4">
+                <div className=" rounded p-4">
                   <p className="  pb-2">
                     Welcome to Akanagar SESDP Model High School, a beacon of
                     education and growth since our inception in 2012. Over the

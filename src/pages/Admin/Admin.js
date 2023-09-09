@@ -7,12 +7,60 @@ import { AuthContext } from "../../context/AuthContexts";
 const Admin = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const navItems = [
+    { href: "/", name: "Home" },
+    // { href: "/admission", name: "Admission" },
+    {
+      href: "/",
+      name: "Academic",
+      subLink: [
+        { id: "aca1", href: "/academic/class-routine", name: "Class Routine" },
+        { id: "aca2", href: "/", name: "Academic Rules" },
+        { id: "aca3", href: "/", name: "Academic Calender" },
+        { id: "aca4", href: "/", name: "Attendance Sheet" },
+      ],
+    },
+    { href: "/students", name: "Students" },
+    {
+      href: "/",
+      name: "Results",
+      subLink: [
+        { id: "res1", href: "/board-results", name: "Board Results" },
+        { id: "res2", href: "/results", name: "Results" },
+      ],
+    },
+    {
+      href: "/",
+      name: "Facilities",
+      subLink: [
+        { id: "fac1", href: "/facilities/library", name: "Library" },
+        { id: "fac1", href: "/facilities/lab", name: "Lab" },
+        { id: "fac1", href: "/facilities/debate", name: "Debate" },
+      ],
+    },
+    {
+      href: "/",
+      name: "Administration",
+      subLink: [
+        { id: "adm1", href: "/teachers", name: "Teachers" },
+        { id: "adm1", href: "/members", name: "Managing Committee" },
+      ],
+    },
+    { href: "/login", name: "Login" },
+    { href: "/docs", name: "Documents" },
+  ];
+
   const facilities = [
     { id: 1, title: "Admission", to: "/admin/admission" },
     { id: 2, title: "News", to: "/admin/news" },
     { id: 3, title: "Notice", to: "/admin/notice" },
-    { id: 4, title: "Routines", to: "/admin/routines" },
-    // { id: 5, title: "Results", to: "/facilities/lab" },
+    { id: 4, title: "Board Results", to: "/admin/board-results" },
+    { id: 5, title: "Regular Results", to: "/admin/regular-results" },
+    { id: 6, title: "Routines", to: "/admin/routines" },
+    { id: 7, title: "Teachers", to: "/admin/teachers" },
+    { id: 8, title: "Members", to: "/admin/members" },
+    { id: 9, title: "Staffs", to: "/admin/staffs" },
   ];
   useEffect(() => {
     if (!user) {

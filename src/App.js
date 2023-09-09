@@ -6,6 +6,11 @@ import { AuthContextProvider } from "./context/AuthContexts";
 import Main from "./layout/Main";
 import About from "./pages/About/About";
 import Admin from "./pages/Admin/Admin";
+import AdminBoardResults from "./pages/Admin/AdminBoardResults";
+import AdminMembers from "./pages/Admin/AdminMembers";
+import AdminRegularResults from "./pages/Admin/AdminRegularResults";
+import AdminStaffs from "./pages/Admin/AdminStaffs";
+import AdminTeachers from "./pages/Admin/AdminTeachers";
 import AdmissionAdmin from "./pages/Admin/AdmissionAdmin";
 import CRUDNotice from "./pages/Admin/CRUDNotice";
 import News from "./pages/Admin/News";
@@ -25,7 +30,8 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/login/Login";
 import Notice from "./pages/Notice/Notice";
 import BoardResults from "./pages/Results/BoardResults";
-import Results from "./pages/Results/Results/Results";
+import RegularResults from "./pages/Results/RegularResults";
+import Staffs from "./pages/Staff/Staffs";
 import Students from "./pages/Students/Students";
 import Teachers from "./pages/Teachers/Teachers";
 
@@ -52,9 +58,10 @@ const router = createBrowserRouter([
       { path: "/admission", element: <Admission /> },
       { path: "/teachers", element: <Teachers /> },
       { path: "/members", element: <Committee /> },
+      { path: "/staffs", element: <Staffs /> },
       { path: "/academic/class-routine", element: <ClassRoutine /> },
-      { path: "/results", element: <Results /> },
       { path: "/board-results", element: <BoardResults /> },
+      { path: "/regular-results", element: <RegularResults /> },
       { path: "/docs", element: <Documents /> },
       { path: "/head-teacher", element: <HeadTeacher /> },
       { path: "/chairman", element: <Chairman /> },
@@ -67,6 +74,11 @@ const router = createBrowserRouter([
           { path: "notice", element: <CRUDNotice /> },
           { path: "admission", element: <AdmissionAdmin /> },
           { path: "routines", element: <RoutineAdmin /> },
+          { path: "board-results", element: <AdminBoardResults /> },
+          { path: "regular-results", element: <AdminRegularResults /> },
+          { path: "teachers", element: <AdminTeachers /> },
+          { path: "members", element: <AdminMembers /> },
+          { path: "staffs", element: <AdminStaffs /> },
         ],
       },
     ],
