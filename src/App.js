@@ -7,6 +7,8 @@ import Main from "./layout/Main";
 import About from "./pages/About/About";
 import Admin from "./pages/Admin/Admin";
 import AdminBoardResults from "./pages/Admin/AdminBoardResults";
+import AdminDocuments from "./pages/Admin/AdminDocuments";
+import AdminEvents from "./pages/Admin/AdminEvents";
 import AdminMembers from "./pages/Admin/AdminMembers";
 import AdminRegularResults from "./pages/Admin/AdminRegularResults";
 import AdminStaffs from "./pages/Admin/AdminStaffs";
@@ -73,12 +75,14 @@ const router = createBrowserRouter([
           { path: "news", element: <News /> },
           { path: "notice", element: <CRUDNotice /> },
           { path: "admission", element: <AdmissionAdmin /> },
-          { path: "routines", element: <RoutineAdmin /> },
           { path: "board-results", element: <AdminBoardResults /> },
           { path: "regular-results", element: <AdminRegularResults /> },
+          { path: "routines", element: <RoutineAdmin /> },
+          { path: "events", element: <AdminEvents /> },
           { path: "teachers", element: <AdminTeachers /> },
           { path: "members", element: <AdminMembers /> },
           { path: "staffs", element: <AdminStaffs /> },
+          { path: "documents", element: <AdminDocuments /> },
         ],
       },
     ],

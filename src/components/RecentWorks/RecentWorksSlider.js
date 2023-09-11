@@ -13,11 +13,11 @@ Each slide displays an image, title, and a stack of Chip components representing
 Finally, the RecentWorksSlider component wraps the slider component and the individual slides to render the complete slider.
  */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import img from "../../assets/images/mujib_logo.jpg";
+import axiosInstance from "../../utils/axiosInstance";
 // import postLogger from "../../utils/postLogger";
 
 function SampleNextArrow(props) {
@@ -128,7 +128,7 @@ export const SingleSlide = (props) => {
       </div> */}
       <div className="mt-0 md:group-hover:translate-y-3 lg:translate-y-14 md:translate-y-10 translate-y-2 duration-300 custom-shadow lg:h-[220px]">
         <img
-          src={`${props.image}`}
+          src={`${process.env.REACT_APP_BASE_UPLOADS + props.path}`}
           alt="recent works img"
           className=" object-cover h-full w-full  shadow-xl"
         />
@@ -138,26 +138,26 @@ export const SingleSlide = (props) => {
 };
 
 function RecentWorksSlider() {
-  // const [data, setData] = useState(null);
-  const data = [
-    { image: img, title: "2023 Final game" },
-    { image: img, title: "2023 Final game" },
-    { image: img, title: "2023 Final game" },
-    { image: img, title: "2023 Final game" },
-  ];
+  const [data, setData] = useState(null);
+  // const data = [
+  //   { image: img, title: "2023 Final game" },
+  //   { image: img, title: "2023 Final game" },
+  //   { image: img, title: "2023 Final game" },
+  //   { image: img, title: "2023 Final game" },
+  // ];
 
   // Data Fetching
-  // useEffect(() => {
-  //   axios
-  //     .get("/work?limit=6")
-  //     .then((response) => {
-  //       setData(response.data.works);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
-
+  useEffect(() => {
+    axiosInstance
+      .get("events")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  console.log(data);
   return (
     <div className="w-full my-10mmm">
       <Slider {...settings} className="py-2 px-5">

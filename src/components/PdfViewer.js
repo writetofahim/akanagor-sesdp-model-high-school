@@ -76,7 +76,7 @@ const PdfViewer = ({ endPoint, heading }) => {
   const [selectedPdf, setSelectedPdf] = useState(null);
   const [pdfData, setPdfData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  console.log(endPoint);
   // fetching data
   useEffect(() => {
     setIsLoading(true);

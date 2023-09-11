@@ -19,6 +19,7 @@ const ProfilesViewer = ({ endPoint, header, dependency }) => {
         console.error("Error fetching document:", error);
       });
   }, [dependency, endPoint]);
+
   return (
     <div>
       {isLoading ? (
@@ -34,10 +35,12 @@ const ProfilesViewer = ({ endPoint, header, dependency }) => {
               >
                 <img
                   src={process.env.REACT_APP_BASE_UPLOADS + profile.path}
-                  alt={`${profile.name}'s profile`}
+                  alt={`${profile.name || profile.title}'s profile`}
                   className="w-28 h-28 rounded-full mb-2 object-cover"
                 />
-                <h2 className="text-xl font-semibold mb-2">{profile.name}</h2>
+                <h2 className="text-xl font-semibold mb-2">
+                  {profile.name || profile.title}
+                </h2>
                 <p className="text-gray-600">{profile.position}</p>
               </div>
             ))}

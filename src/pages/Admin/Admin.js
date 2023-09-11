@@ -58,9 +58,11 @@ const Admin = () => {
     { id: 4, title: "Board Results", to: "/admin/board-results" },
     { id: 5, title: "Regular Results", to: "/admin/regular-results" },
     { id: 6, title: "Routines", to: "/admin/routines" },
-    { id: 7, title: "Teachers", to: "/admin/teachers" },
-    { id: 8, title: "Members", to: "/admin/members" },
-    { id: 9, title: "Staffs", to: "/admin/staffs" },
+    { id: 7, title: "Events", to: "/admin/events" },
+    { id: 8, title: "Teachers", to: "/admin/teachers" },
+    { id: 9, title: "Members", to: "/admin/members" },
+    { id: 10, title: "Staffs", to: "/admin/staffs" },
+    { id: 11, title: "Documents", to: "/admin/documents" },
   ];
   useEffect(() => {
     if (!user) {
