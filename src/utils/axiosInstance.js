@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://127.0.0.1:8800/api/",
+  // baseURL: "http://127.0.0.1:8800/api/",
   // baseURL: "https://aksesdpbackend.onrender.com/api",
-  // baseURL: "http://aksesdpmhs.itstorm.xyz/api",
+  baseURL: "https://aksesdpmhs.itstorm.xyz/api",
 });
 export default axiosInstance;
