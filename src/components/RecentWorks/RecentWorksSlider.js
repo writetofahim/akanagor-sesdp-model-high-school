@@ -138,7 +138,7 @@ export const SingleSlide = (props) => {
 };
 
 function RecentWorksSlider() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([{ path: "", title: "2023 Final game" }]);
   // const data = [
   //   { image: img, title: "2023 Final game" },
   //   { image: img, title: "2023 Final game" },
@@ -151,7 +151,8 @@ function RecentWorksSlider() {
     axiosInstance
       .get("events")
       .then((response) => {
-        setData(response.data);
+        // setData(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -161,8 +162,9 @@ function RecentWorksSlider() {
   return (
     <div className="w-full my-10mmm">
       <Slider {...settings} className="py-2 px-5">
-        {data &&
-          data.map((item, index) => <SingleSlide key={index} {...item} />)}
+        {data.map((item, index) => (
+          <SingleSlide key={index} {...item} />
+        ))}
       </Slider>
     </div>
   );
