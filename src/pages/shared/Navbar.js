@@ -265,7 +265,7 @@ const Navbar = () => {
               >
                 <Link className="flex items-center" to="/login">
                   {user ? (
-                    <p className="group relative">
+                    <div className="group relative">
                       {user.user}
                       <div className="hidden group-hover:flex hover:flex flex-col gap-3 bg-white  absolute top-6 -right-10 w-32 p-5 rounded-md shadow-lg border text-slate-700 dark:text-slate-400 text-sm">
                         <p
@@ -276,7 +276,7 @@ const Navbar = () => {
                           Logout
                         </p>
                       </div>
-                    </p>
+                    </div>
                   ) : (
                     "Login"
                   )}

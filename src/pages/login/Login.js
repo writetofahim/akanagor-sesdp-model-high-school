@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContexts";
 
@@ -9,6 +9,8 @@ const Login = () => {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+  const [firstLoad, setFirstLoad] = useState(true);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -21,13 +23,22 @@ const Login = () => {
       setLoading(true);
       await login(formData);
       setLoading(false);
-      navigate("/admin");
+      setIsLogged(true);
+      // navigate("/admin");
     } catch (err) {
       setLoading(false);
       console.log(err);
     }
   };
-
+  useEffect(() => {
+    if (firstLoad) {
+      setFirstLoad(false);
+      return;
+    }
+    if (isLogged) {
+      navigate("/admin");
+    }
+  }, [navigate, isLogged]);
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900 h-screen mt-52 md:mt-0">

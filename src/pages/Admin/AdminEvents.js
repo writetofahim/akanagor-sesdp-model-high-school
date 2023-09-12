@@ -11,6 +11,11 @@ const AdminEvents = () => {
   //   const [selectedFile, setSelectedFile] = useState(null);
   const inputFields = [
     { name: "title", label: "Title", placeholder: "2023 Annual Game" },
+    {
+      name: "subTitle",
+      label: "Sub-Title",
+      placeholder: "Honorable guests and teachers",
+    },
 
     { name: "image", label: "Image", type: "file" },
     // Add more input fields as needed
@@ -22,14 +27,15 @@ const AdminEvents = () => {
 
       //   Append individual fields from formData
       formDataToSend.append("title", formData.title);
+      formDataToSend.append("subTitle", formData.subTitle);
 
       // Append the file
       formDataToSend.append("image", file);
 
       // Iterate through the FormData and log its contents
-      for (const pair of formDataToSend.entries()) {
-        console.log(pair[0], pair[1]);
-      }
+      // for (const pair of formDataToSend.entries()) {
+      //   console.log(pair[0], pair[1]);
+      // }
       // Make a POST request to the endpoint
       const response = await axiosInstance.post("events", formDataToSend, {
         headers: {
@@ -39,7 +45,7 @@ const AdminEvents = () => {
       setLoading(false);
       // Handle the response, e.g., display a success message
       toast.success("New event added");
-      console.log("Response:", response.data);
+      // console.log("Response:", response.data);
     } catch (error) {
       // Handle errors, e.g., display an error message
       toast.error("Server Error, Please try again later");

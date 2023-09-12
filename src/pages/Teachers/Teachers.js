@@ -35,7 +35,7 @@ import ProfilesViewer from "../../components/ProfilesViewer";
 
 const Teachers = () => {
   return (
-    <div className="h-[calc(100vh-64px)] overflow-x-scroll pt-16">
+    <div className="">
       <ProfilesViewer endPoint="teachers" header="All Teachers" />
     </div>
   );

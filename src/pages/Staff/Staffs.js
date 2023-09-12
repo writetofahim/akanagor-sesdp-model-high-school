@@ -3,7 +3,7 @@ import ProfilesViewer from "../../components/ProfilesViewer";
 
 const Staffs = () => {
   return (
-    <div className="h-[calc(100vh-64px)] overflow-x-scroll pt-16">
+    <div className="">
       <ProfilesViewer endPoint="staffs" header="All Staffs" />
     </div>
   );

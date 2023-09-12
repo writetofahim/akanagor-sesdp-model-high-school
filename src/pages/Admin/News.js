@@ -4,7 +4,7 @@ import Loader from "../../components/loader/Loader";
 import axiosInstance from "../../utils/axiosInstance";
 
 const News = () => {
-  const [news, setNews] = useState({});
+  const [news, setNews] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [newsInput, setNewsInput] = useState("");
@@ -23,7 +23,7 @@ const News = () => {
   }, []);
 
   useEffect(() => {
-    setNewsInput(news.news || "");
+    news ? setNewsInput(news.news) : setNewsInput("News Loading");
   }, [news]);
 
   const handleChange = (e) => {
@@ -33,6 +33,7 @@ const News = () => {
 
   const handlePublish = async () => {
     setLoading(true);
+    console.log(newsInput);
     try {
       await axiosInstance.put("news", { news: newsInput });
       toast.success("Scrolling News has been Published");

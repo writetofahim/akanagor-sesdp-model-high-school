@@ -89,7 +89,7 @@ import PdfViewer from "../../components/PdfViewer";
 
 const Documents = () => {
   return (
-    <div className="px-5 h-[calc(100vh-64px)] overflow-x-scroll my-20">
+    <div className="px-5 ">
       <PdfViewer endPoint="documents" heading="School Accreditation Records" />
     </div>
   );

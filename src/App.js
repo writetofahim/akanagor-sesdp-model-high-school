@@ -21,13 +21,13 @@ import Admission from "./pages/Admission/Admission";
 import Chairman from "./pages/Chairman/Chairman";
 import ClassRoutine from "./pages/ClassRoutine/ClassRoutine";
 import Committee from "./pages/Committee/Committee";
+import DevContact from "./pages/DevContact";
 import Documents from "./pages/Documents/Documents";
 import CoCurricularActivities from "./pages/Facilities/CoCurricularActivities";
 import Facilities from "./pages/Facilities/Facilities";
 import Lab from "./pages/Facilities/Lab";
 import Library from "./pages/Facilities/Library";
 import HeadTeacher from "./pages/HeadTeacher/HeadTeacher";
-import Hero from "./pages/Home/Hero/Hero";
 import Home from "./pages/Home/Home";
 import Login from "./pages/login/Login";
 import Notice from "./pages/Notice/Notice";
@@ -36,9 +36,11 @@ import RegularResults from "./pages/Results/RegularResults";
 import Staffs from "./pages/Staff/Staffs";
 import Students from "./pages/Students/Students";
 import Teachers from "./pages/Teachers/Teachers";
+import Test from "./pages/Test";
 
 const router = createBrowserRouter([
-  { path: "/test", element: <Hero /> },
+  { path: "/test", element: <Test /> },
+  { path: "/dev-contact", element: <DevContact /> },
   {
     path: "/",
     element: <Main />,

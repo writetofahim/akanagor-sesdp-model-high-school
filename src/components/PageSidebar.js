@@ -12,8 +12,8 @@ const PageSidebar = ({ sectionName, links }) => {
       </h1>
       <div className="border-t border-2 w-20 mt-2 border-orange-300"></div>
       <div className="flex flex-col gap-3 mt-5">
-        {links.map(({ id, to, title, subLink }) => (
-          <>
+        {links.map(({ id, to, title, subLink }, i) => (
+          <div key={i}>
             {/* {subLink ? (
               <div>
                 <p className="block py-2 px-3 bg-gray-300 hover:bg-orange-300 hover:text-white duration-200">
@@ -34,7 +34,6 @@ const PageSidebar = ({ sectionName, links }) => {
               </div>
             ) : ( */}
             <NavLink
-              key={id}
               className={({ isActive }) =>
                 isActive ? activeClassName : inactiveClassName
               }
@@ -43,7 +42,7 @@ const PageSidebar = ({ sectionName, links }) => {
               {title}
             </NavLink>
             {/* )} */}
-          </>
+          </div>
         ))}
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
+import ImageWithPlaceholder from "./ImageWithPlaceholder";
 import Loader from "./loader/Loader";
 
 const ProfilesViewer = ({ endPoint, header, dependency }) => {
@@ -12,6 +13,7 @@ const ProfilesViewer = ({ endPoint, header, dependency }) => {
       .get(endPoint)
       .then((response) => {
         setProfiles(response.data);
+        // console.log(response.data);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -33,8 +35,18 @@ const ProfilesViewer = ({ endPoint, header, dependency }) => {
                 key={profile._id}
                 className=" p-4 rounded-lg shadow flex flex-col items-center hover:bg-white dark:hover:bg-gray-600 hover:shadow-lg"
               >
-                <img
+                {/* <img
                   src={process.env.REACT_APP_BASE_UPLOADS + profile.path}
+                  alt={`${profile.name || profile.title}'s profile`}
+                  className="w-28 h-28 rounded-full mb-2 object-cover"
+                  onError={(e) => {
+                    e.target.src =
+                      "https://iwfstaff.com.au/wp-content/uploads/2017/12/placeholder-image.png"; // Replace with your placeholder image path
+                    e.target.alt = "Image not found"; // Optionally, update the alt text
+                  }}
+                /> */}
+                <ImageWithPlaceholder
+                  actualSrc={process.env.REACT_APP_BASE_UPLOADS + profile.path}
                   alt={`${profile.name || profile.title}'s profile`}
                   className="w-28 h-28 rounded-full mb-2 object-cover"
                 />

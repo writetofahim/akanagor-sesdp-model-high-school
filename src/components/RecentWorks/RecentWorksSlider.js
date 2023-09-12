@@ -80,44 +80,18 @@ var settings = {
   ],
 };
 
-// export const SingleSlide = (props) => {
-//     return (
-//         <div className="mx-5 mb-20 rounded-lg relative shadow-xl bg-background-500">
-//             <img src={`${import.meta.env.REACT_APP_SERVER_PATH}/${props.image}`} alt="" className=" rounded-xl aspect-[1.4] object-cover" />
-//             <div className="absolute b-0 left-1/2 transform -translate-x-1/2 translate-y-[-50%] bg-background-500 w-[80%] rounded-xl shadow p-5 flex flex-col items-center">
-//                 <h3 className="text-xl font-bold text-gray-400 mb-2">{props.title}</h3>
-//                 <Stack direction="row" spacing={1} className="flex flex-wrap">
-//                     {
-//                         props.technologies && props.technologies.map((tech, index) => (
-//                             <Chip label={tech} key={index} variant="outlined" className="mb-1" />
-//                         ))
-//                     }
-//                 </Stack>
-//             </div>
-//         </div>
-//     )
-// }
-
 export const SingleSlide = (props) => {
   return (
-    <div className="mx-5 mb-14 rounded-lg relative shadow-xl hover:shadow-lg  pt-5 group dark:bg-gray-700 overflow-hidden duration-200">
-      <div className="h-[100px]">
+    <div className=" mx-2 rounded-md relative shadow-xl hover:shadow-lg  pt-5 group dark:bg-gray-700 overflow-hidden duration-200">
+      <div className="h-[80px]">
         <Link to="/">
-          <h3 className="text-2xl font-bold text-gray-600 dark:text-white mb-2 text-center hover:underline cursor-pointer">
+          <h3 className="text-2xl font-bold  dark:text-white mb-2 text-center hover:underline cursor-pointer">
             {props.title}
           </h3>
         </Link>
-        {/* <div className="flex gap-2 flex-wrap items-center justify-center mb-5">
-          {
-            props.technologies.map((tech, index) => (
-              <div
-                key={index}
-                className={`text-sm rounded-full px-2 py-1 bg-gradient-to-r from-primary-500 to-primary-200 text-buttonText-500`}
-              >
-                {tech}
-              </div>
-            ))}
-        </div> */}
+        <p className="text-center px-2 text-gray-600 dark:text-gray-400">
+          {props.subTitle}
+        </p>
       </div>
       {/* <div className="mt-0 md:group-hover:translate-y-3 lg:translate-y-14 md:translate-y-10 translate-y-2 duration-300 custom-shadow lg:h-[250px] ">
         <img
@@ -126,11 +100,16 @@ export const SingleSlide = (props) => {
           className="rounded-tl-xl rounded-tr-xl aspect-[1.4] object-contain "
         />
       </div> */}
-      <div className="mt-0 md:group-hover:translate-y-3 lg:translate-y-14 md:translate-y-10 translate-y-2 duration-300 custom-shadow lg:h-[220px]">
+      <div className="mt-0 md:group-hover:translate-y-3 lg:translate-y-14 md:translate-y-10 translate-y-2 duration-300 shadow-md lg:h-[220px]">
         <img
           src={`${process.env.REACT_APP_BASE_UPLOADS + props.path}`}
+          onError={(e) => {
+            e.target.src =
+              "https://iwfstaff.com.au/wp-content/uploads/2017/12/placeholder-image.png"; // Replace with your placeholder image path
+            e.target.alt = "Image not found"; // Optionally, update the alt text
+          }}
           alt="recent works img"
-          className=" object-cover h-full w-full  shadow-xl"
+          className=" object-cover h-full w-full  shadow-md"
         />
       </div>
     </div>
@@ -138,34 +117,47 @@ export const SingleSlide = (props) => {
 };
 
 function RecentWorksSlider() {
-  const [data, setData] = useState([{ path: "", title: "2023 Final game" }]);
-  // const data = [
-  //   { image: img, title: "2023 Final game" },
-  //   { image: img, title: "2023 Final game" },
-  //   { image: img, title: "2023 Final game" },
-  //   { image: img, title: "2023 Final game" },
-  // ];
+  const [data, setData] = useState(null);
+  const img =
+    "https://iwfstaff.com.au/wp-content/uploads/2017/12/placeholder-image.png";
+  const data2 = [
+    { image: img, title: "2023 Final game 1" },
+    { image: img, title: "2023 Final game2" },
+    { image: img, title: "2023 Final game3" },
+    { image: img, title: "2023 Final game4" },
+    { image: img, title: "2023 Final game5" },
+    { image: img, title: "2023 Final game6" },
+  ];
 
   // Data Fetching
   useEffect(() => {
     axiosInstance
       .get("events")
       .then((response) => {
-        // setData(response.data);
-        console.log(response.data);
+        setData(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
-  console.log(data);
+  if (!data) {
+    setData(data2);
+  }
+  // console.log(data);
   return (
     <div className="w-full my-10mmm">
-      <Slider {...settings} className="py-2 px-5">
-        {data.map((item, index) => (
-          <SingleSlide key={index} {...item} />
-        ))}
-      </Slider>
+      {Array.isArray(data) ? (
+        <div className="">
+          <Slider {...settings} className="">
+            {data.map((item, index) => (
+              <SingleSlide key={index} {...item} />
+            ))}
+          </Slider>
+        </div>
+      ) : (
+        <p>Data is not an array</p>
+      )}
     </div>
   );
 }

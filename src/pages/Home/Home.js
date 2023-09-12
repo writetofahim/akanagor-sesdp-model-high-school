@@ -1,21 +1,19 @@
 import Pagination from "@mui/material/Pagination";
 import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
-import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
-import classIcon from "../../assets/icons/class.svg";
-import staff from "../../assets/icons/staff.svg";
-import student from "../../assets/icons/student.svg";
-import teacher from "../../assets/icons/teacher.svg";
+
 import principal from "../../assets/images/teacher/principal.PNG";
 import vice_principal from "../../assets/images/teacher/vice_principal1.jpg";
+import AtaGlance from "../../components/AtaGlance";
+import ImageWithPlaceholder from "../../components/ImageWithPlaceholder";
 import RecentWorks from "../../components/RecentWorks/RecentWorks";
 import axiosInstance from "../../utils/axiosInstance";
 import Hero from "./Hero/Hero";
 
 const Home = () => {
-  const [news, setNews] = useState({});
-  const [notices, setNotice] = useState([]);
+  const [news, setNews] = useState(null);
+  const [notices, setNotice] = useState(null);
   const [page, setPage] = useState(1);
   const baseURL = axiosInstance.defaults.baseURL;
 
@@ -78,45 +76,13 @@ const Home = () => {
   //       "Excited to welcome you to our digital hub! Step into our virtual realm and discover a world of innovation. Click, explore, and connect! Our website is the gateway to our mission",
   //   },
   // ];
-  const data = [
-    {
-      name: "Classes",
-      number: "5",
-      icon: classIcon,
-    },
-    {
-      name: "Students",
-      number: "520",
-      icon: student,
-    },
-    {
-      name: "Teachers",
-      number: "13",
-      icon: teacher,
-    },
-    {
-      name: "Staff",
-      number: "3",
-      icon: staff,
-    },
-  ];
+
   const handlePageChange = (event, page) => {
     setPage(page);
   };
-  // const handleNotice = (notice) => {
-  // console.log(notice);
-  // axiosInstance
-  //   .get(`notice/${notice._id}`)
-  //   .then((response) => {
-  //     console.log(response.data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // };
   return (
     <div>
-      <div className="px-5 w-full mx-auto mt-16 dark:text-white">
+      <div className="px-5 w-full mx-auto  dark:text-white">
         <div className="space-y-3">
           {/* hero */}
           <section>
@@ -134,81 +100,93 @@ const Home = () => {
             </div>
           </section>
           {/* scrolling notice */}
-          <Fade right>
-            <section className="relative h-10 overflow-hidden flex bg-white dark:bg-gray-800">
-              <h3 className="absolute h-10 shadow-lg top-0 left-0 z-10 text-xl lg:text-3xl rounded-sm px-1 lg:px-3 bg-orange-300 text-white flex items-center text-center">
-                News:
-              </h3>
-              {/* <div className="  flex"> */}
-              <Marquee
-                className="md:text-lg text-md items-center"
-                pauseOnHover={true}
-              >
-                {news.news}
-              </Marquee>
-              {/* </div> */}
-            </section>
-          </Fade>
-          <Fade bottom>
-            <section className="lg:flex justify-between  lg:px-0">
-              <div className="lg:w-[65%] mr-2 lg:space-x-2 lg:flex justify-between">
-                {/* head teacher */}
-                <div className="lg:w-1/2 lg:border dark:border-gray-700 lg:p-5 lg:space-y-3 rounded">
-                  <img
-                    className="w-full h-60 object-cover object-top"
-                    src={principal}
-                    alt=""
-                  />
-                  <div className="text-center">
-                    <h3 className="mt-2 text-xl font-semibold text-sans">
-                      Sufian Saurov
-                    </h3>
-                    <div className=" text-sm">Head Teacher</div>
-                    <p className="mb-2 text-left dark:text-gray-400">
-                      I am deeply honored to welcome you to our school's
-                      official website. As the head teacher of Akanagar SESDP
-                      Model High School, I am delighted to share with you the
-                      essence of our school, our values, and our commitment to
-                      nurturing young minds.{" "}
-                      <Link to="/head-teacher" className="text-blue-500">
-                        see more
-                      </Link>{" "}
-                    </p>
-                  </div>
-                </div>
-                {/* chairman */}
-                <div className="lg:w-1/2 lg:border dark:border-gray-700 lg:p-5 lg:space-y-3 rounded">
-                  <img
-                    className="w-full h-60 object-cover object-top"
-                    src={vice_principal}
-                    alt=""
-                  />
-                  <div className="text-center">
-                    <h3 className="mt-2 text-xl font-semibold text-sans">
-                      MD Rafiqul Islam
-                    </h3>
-                    <div className=" text-sm">Chairman</div>
-                    <p className="mb-2 text-left dark:text-gray-400">
-                      It is my pleasure to extend a warm welcome to you on
-                      behalf of Akanagar SESDP Model School. As the Chairman of
-                      this exceptional organization, I am delighted to introduce
-                      you to our digital platform—a window into the heart and
-                      soul of our mission.
-                      <Link to="/chairman" className="text-blue-500">
-                        {" "}
-                        see more
-                      </Link>
-                    </p>
-                  </div>
+          {/* <Fade right> */}
+          <section className="relative h-10 overflow-hidden flex bg-white dark:bg-gray-800">
+            <h3 className="absolute h-10 shadow-lg top-0 left-0 z-10 text-xl lg:text-3xl rounded-sm px-1 lg:px-3 bg-orange-300 text-white flex items-center text-center">
+              News:
+            </h3>
+            {/* <div className="  flex"> */}
+            <Marquee
+              className="md:text-lg text-md items-center"
+              pauseOnHover={true}
+            >
+              {news ? news.news : "Loading news"}
+            </Marquee>
+            {/* </div> */}
+          </section>
+          {/* </Fade> */}
+          {/* <Fade bottom> */}
+          <section className="lg:flex justify-between gap-2  lg:px-0">
+            <div className="lg:w-[65%]  lg:space-x-2 lg:space-y-0 space-y-2 lg:flex justify-between">
+              {/* head teacher */}
+              {/*    lg:border dark:border-gray-700*/}
+              <div className="bg-white dark:bg-gray-700 rounded-md p-2 shadow-md lg:w-1/2 lg:p-5 lg:space-y-3 ">
+                {/* <img
+                  className="w-full h-60 object-cover object-top"
+                  src={principal}
+                  alt=""
+                /> */}
+                <ImageWithPlaceholder
+                  className="w-full h-60 object-cover object-top"
+                  actualSrc={principal}
+                  alt="head of the school "
+                />
+                <div className="text-center">
+                  <h3 className="mt-2 text-xl font-semibold text-sans">
+                    Sufian Saurov
+                  </h3>
+                  <div className=" text-sm">Head Teacher</div>
+                  <p className="mb-2 text-left dark:text-gray-400">
+                    I am deeply honored to welcome you to our school's official
+                    website. As the head teacher of Akanagar SESDP Model High
+                    School, I am delighted to share with you the essence of our
+                    school, our values, and our commitment to nurturing young
+                    minds.{" "}
+                    <Link to="/head-teacher" className="text-blue-500">
+                      see more
+                    </Link>{" "}
+                  </p>
                 </div>
               </div>
-              {/* notice */}
-              <div className="border dark:border-gray-700 w-full  lg:w-[35%] relative p-3 rounded">
-                <h1 className="mb-3 text-3xl font-medium text-center">
-                  Notice <span className="text-orange-300">Board</span>
-                </h1>
-                <div className="space-y-2">
-                  {notices.documents?.map((notice, index) => (
+              {/* chairman */}
+              <div className="bg-white dark:bg-gray-700 rounded-md p-2 shadow-md  lg:w-1/2 lg:p-5 lg:space-y-3 ">
+                {/* <img
+                  className="w-full h-60 object-cover object-top"
+                  src={vice_principal}
+                  alt=""
+                /> */}
+                <ImageWithPlaceholder
+                  className="w-full h-60 object-cover object-top"
+                  actualSrc={vice_principal}
+                  alt="chairman of the school "
+                />
+                <div className="text-center">
+                  <h3 className="mt-2 text-xl font-semibold text-sans">
+                    MD Rafiqul Islam
+                  </h3>
+                  <div className=" text-sm">Chairman</div>
+                  <p className="mb-2 text-left dark:text-gray-400">
+                    It is my pleasure to extend a warm welcome to you on behalf
+                    of Akanagar SESDP Model School. As the Chairman of this
+                    exceptional organization, I am delighted to introduce you to
+                    our digital platform—a window into the heart and soul of our
+                    mission.
+                    <Link to="/chairman" className="text-blue-500">
+                      {" "}
+                      see more
+                    </Link>
+                  </p>
+                </div>
+              </div>
+            </div>
+            {/* notice */}
+            <div className="bg-white dark:bg-gray-700 rounded-md w-full  lg:w-[35%] relative p-3 lg:my-0 my-2 shadow-md">
+              <h1 className="mb-3 text-3xl font-medium text-center">
+                Notice <span className="text-orange-300">Board</span>
+              </h1>
+              <div className="space-y-2">
+                {notices ? (
+                  notices.documents?.map((notice, index) => (
                     <a
                       key={index}
                       // onClick={() => handleNotice(notice)}
@@ -231,28 +209,39 @@ const Home = () => {
                         {notice.title}
                       </p>
                     </a>
-                  ))}
-                  <div className=" flex justify-center pt-3">
-                    <Pagination
-                      count={notices?.pages}
-                      color="primary"
-                      size="small"
-                      onChange={handlePageChange}
-                    />
-                  </div>
+                  ))
+                ) : (
+                  <p className="border p-5 text-center">Loading notices...</p>
+                )}
+                <div className=" flex justify-center pt-3">
+                  <Pagination
+                    count={notices?.pages}
+                    color="primary"
+                    size="small"
+                    onChange={handlePageChange}
+                  />
                 </div>
               </div>
-            </section>
-          </Fade>
+            </div>
+          </section>
+          {/* </Fade> */}
           {/* bottom section */}
-          <Fade bottom>
-            <section className=" w-full lg:flex justify-between">
-              {/* events */}
-              <RecentWorks />
-
+          {/* <Fade bottom> */}
+          {/* events */}
+          <div className="">
+            <RecentWorks />
+          </div>
+          <section className="pt-4 w-full lg:flex lg:flex-col lg:space-y-0 space-y-2 gap-3 justify-between ">
+            <h3 className="text-center text-xl customFont">
+              Our Institution at a glance
+            </h3>
+            <div className="lg:flex lg:space-y-0 space-y-2 gap-3 justify-between ">
+              {/* at a glance */}
+              <div className="lg:w-1/2 w-full">
+                <AtaGlance />
+              </div>
               {/* about */}
-              <div className="md:border-l dark:border-gray-700 md:ml-2 mb-3 justify-center lg:w-[35%] w-full">
-                {/* <Calendar /> */}
+              <div className="bg-white dark:bg-gray-700 rounded-md p-2 shadow-md lg:w-1/2 w-full">
                 <h3 className="text-center mb-2 text-xl">
                   Discover Akanagar{" "}
                   <span className="text-orange-300">SESDP</span> Model High
@@ -275,32 +264,9 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-            </section>
-          </Fade>
-          {/* at a glance */}
-          <div className="">
-            <h3 className="text-center text-xl">Our Institution at a glance</h3>
-            <div className="flex ">
-              <Fade bottom>
-                <div className="grid md:grid-cols-4 grid-cols-2 mx-auto gap-2 my-3">
-                  {data.map(({ name, number, icon }, index) => (
-                    <div
-                      key={index}
-                      className="flex gap-2 border dark:border-gray-700 rounded p-3"
-                    >
-                      <img src={icon} className="w-20 h-20" alt="" />
-                      <div>
-                        <p>{name}</p>
-                        <p className="text-2xl font-extrabold text-center text-orange-300">
-                          {number}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Fade>
             </div>
-          </div>
+          </section>
+          {/* </Fade> */}
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ function ClassSchedule({ data }) {
 
   return (
     <div className="  p-4">
-      <table className="table-auto mx-auto w-1/2 border-collapse border dark:border-gray-700">
+      <table className="table-auto mx-auto w-full md:w-1/2 border-collapse border dark:border-gray-700">
         <thead>
           <tr>
             <th className="border dark:border-gray-700 p-1">Class Name</th>
@@ -19,12 +19,12 @@ function ClassSchedule({ data }) {
         <tbody>
           {data.map((classInfo) => (
             <tr key={classInfo._id}>
-              <td className="border dark:border-gray-700 p-1">
+              <td className="border dark:border-gray-700 p-1 ">
                 {classInfo.className}
               </td>
-              <td className="border dark:border-gray-700 p-1">
+              <td className="border dark:border-gray-700 p-1 ">
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4  rounded"
                   onClick={() => handleClassClick(classInfo)}
                 >
                   View
@@ -37,7 +37,7 @@ function ClassSchedule({ data }) {
 
       {selectedClass && (
         <div className="mt-4">
-          <h2 className="text-2xl font-bold mb-2 text-center">
+          <h2 className="md:text-2xl text-xl font-bold mb-2 text-center">
             Class {selectedClass.className} Schedule
           </h2>
           <table className="table-auto mx-auto border-collapse border-r border-l dark:border-gray-700">

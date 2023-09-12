@@ -76,7 +76,7 @@ const PdfViewer = ({ endPoint, heading }) => {
   const [selectedPdf, setSelectedPdf] = useState(null);
   const [pdfData, setPdfData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  console.log(endPoint);
+  // console.log(endPoint);
   // fetching data
   useEffect(() => {
     setIsLoading(true);
@@ -134,7 +134,7 @@ const PdfViewer = ({ endPoint, heading }) => {
                     }
                     title={selectedPdf.pdfTitle}
                     className="w-full h-[calc(100vh-250px)]"
-                    onLoad={console.log("after loaded")}
+                    // onLoad={console.log("after loaded")}
                   ></iframe>
                 </div>
               )}
