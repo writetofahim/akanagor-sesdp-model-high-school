@@ -102,7 +102,9 @@ const PdfViewer = ({ endPoint, heading }) => {
         <Loader />
       ) : (
         <div className="flex flex-col ">
-          <h2 className="text-xl font-semibold mb-2 text-center">{heading}</h2>
+          <h2 className="text-xl font-semibold mb-2 text-center customFont">
+            {heading}
+          </h2>
           <div className="  md:flex block justify-center md:items-start items-center md:space-x-4 ">
             <div className="  md:w-1/4 md:h-auto w-full h-40 md:border-none border-b dark:border-gray-700 md:py-0 py-2 md:my-0 my-3 overflow-x-scroll">
               <h3 className="text-md md:font-semibold md:mb-0 mb-2  ">

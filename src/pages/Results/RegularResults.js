@@ -3,7 +3,7 @@ import PdfViewer from "../../components/PdfViewer";
 
 const RegularResults = () => {
   return (
-    <div className="px-5 h-[calc(100vh-64px)] overflow-x-scroll my-20">
+    <div className="">
       <PdfViewer endPoint="results/regular/" heading="Regular Results" />
     </div>
   );

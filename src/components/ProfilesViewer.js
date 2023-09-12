@@ -28,7 +28,7 @@ const ProfilesViewer = ({ endPoint, header, dependency }) => {
         <Loader />
       ) : (
         <div>
-          <h1 className="text-center text-2xl my-10">{header}</h1>
+          <h1 className="text-center text-2xl my-5 customFont">{header}</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-5">
             {profiles.map((profile) => (
               <div
