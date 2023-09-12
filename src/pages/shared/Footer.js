@@ -4,21 +4,21 @@ import { Link } from "react-router-dom";
 import wave from "../../assets/images/wave.jpg";
 const Footer = () => {
   return (
-    <footer className="h-72 relative  z-40   bg-transparent  transition-colors duration-500 dark:text-white">
+    //bg-transparent  transition-colors duration-500 dark:text-white
+    <footer className="md:h-72 h-[80vh] relative  z-40   ">
       <img
         className="h-full w-full object-cover opacity-30"
         src={wave}
         alt=""
       />
       {/* elements */}
-      <div className="backdrop-blur-3xls absolute top-0 w-full h-full flex gap-5 justify-evenly">
+      <div className=" absolute top-0 w-full md:h-full h-full  flex md:flex-row flex-col gap-5 justify-evenly">
         {/* address */}
-        <div className=" my-auto backdrop-blur-sm bg-blue-400/10 px-3 py-2 flex flex-col items-center justify-centerx h-52 rounded-lg">
+        <div className=" my-auto backdrop-blur-sm bg-blue-400/10 px-3 py-2 flex flex-col items-center justify-centerx h-52 md:rounded-lg ">
           <p className="text-xl items-center">Our Address</p>
-          <div className=" items-center">
-            <p>
-              {" "}
-              <span className="font-bold">Location: </span>Akanagor,
+          <div className="text-center items-center">
+            <p className="mt-3">
+              <span className="font-bold ">Location: </span>Akanagor,
               Bancharampur, Brahmanbaria
             </p>
             <p>
@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
         </div>
         {/* links */}
-        <div className="my-auto backdrop-blur-sm bg-blue-400/10 px-3 py-2 flex flex-col items-center justify-centerx h-52 rounded-lg">
+        <div className="my-auto backdrop-blur-sm bg-blue-400/10 px-3 py-2 flex flex-col items-center justify-centerx h-52 md:rounded-lg">
           <h3 className="text-xl items-center">Useful Links</h3>
           <ul className="mb-3">
             <li className="hover:text-sky-400 ">
@@ -70,7 +70,7 @@ const Footer = () => {
           </ul>
         </div>
         {/* dev */}
-        <div className="my-auto backdrop-blur-sm bg-blue-400/10 px-3 py-2 flex flex-col items-center justify-center h-52 rounded-lg">
+        <div className="my-auto backdrop-blur-sm bg-blue-400/10 px-3 py-2 flex flex-col items-center justify-center h-52 md:rounded-lg">
           <p className="text-xs">Developed by:</p>
 
           <div className="text-center">

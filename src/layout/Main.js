@@ -9,7 +9,7 @@ const Main = () => {
       {/* <div className="max-w-[1400px] mx-auto"> */}
       <Navbar />
       {/* </div> */}
-      <section className="relative -mt-[65px] w-full overflow-hidden overflow-x-clip bg-slate-50 bg-gradient-to-t from-slate-50 to-slate-100 dark:bg-[#0B1120] dark:bg-none">
+      <section className="relative -mt-[65px] w-full overflow-hidden xxxoverflow-x-clip bg-slate-50 bg-gradient-to-t from-slate-50 to-slate-100 dark:bg-[#0B1120] dark:bg-none">
         {/* <div className="">
           <div className="absolute right-[28%] top-0 hidden h-[150px] w-[200px] rotate-12 rounded-3xl bg-gradient-to-l from-blue-600 to-sky-400 opacity-20  filter dark:block dark:opacity-100 lg:top-44 lg:-right-20 lg:h-72 lg:w-[350px] xl:h-80 xl:w-[500px]"></div>
           
