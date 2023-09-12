@@ -190,7 +190,7 @@ const Home = () => {
                     <a
                       key={index}
                       // onClick={() => handleNotice(notice)}
-                      href={`${baseURL}notice/${notice._id}`}
+                      href={`${baseURL}/notice/${notice._id}`}
                       className="flex cursor-pointer"
                     >
                       <p className="bg-orange-300 text-sm text-white text-center rounded-l-sm py-2 px-2 flex flex-col">

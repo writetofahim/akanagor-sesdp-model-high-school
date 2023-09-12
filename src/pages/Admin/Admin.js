@@ -74,7 +74,7 @@ const Admin = () => {
   const { pathname } = useLocation();
   const selected = facilities.find((item) => item.to === pathname) || {};
   return (
-    <div className="h-[calc(100vh-64px)] overflow-x-scroll">
+    <div className="">
       {user ? (
         <>
           <PageTopBanner title={selected?.title || "Admin"} />

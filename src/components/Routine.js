@@ -4,7 +4,9 @@ function ClassSchedule({ data }) {
   const [selectedClass, setSelectedClass] = useState(null);
 
   const handleClassClick = (classInfo) => {
-    setSelectedClass(classInfo);
+    setSelectedClass((prevSelectedClass) =>
+      prevSelectedClass?.className === classInfo?.className ? null : classInfo
+    );
   };
 
   return (
