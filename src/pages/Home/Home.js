@@ -3,10 +3,7 @@ import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
 
-import principal from "../../assets/images/teacher/principal.PNG";
-import vice_principal from "../../assets/images/teacher/vice_principal1.jpg";
 import AtaGlance from "../../components/AtaGlance";
-import ImageWithPlaceholder from "../../components/ImageWithPlaceholder";
 import RecentWorks from "../../components/RecentWorks/RecentWorks";
 import axiosInstance from "../../utils/axiosInstance";
 import Hero from "./Hero/Hero";
@@ -126,11 +123,11 @@ const Home = () => {
                   src={principal}
                   alt=""
                 /> */}
-                <ImageWithPlaceholder
+                {/* <ImageWithPlaceholder
                   className="w-full h-60 object-cover object-top"
                   actualSrc={principal}
                   alt="head of the school "
-                />
+                /> */}
                 <div className="text-center">
                   <h3 className="mt-2 text-xl font-semibold text-sans">
                     Sufian Saurov
@@ -155,11 +152,11 @@ const Home = () => {
                   src={vice_principal}
                   alt=""
                 /> */}
-                <ImageWithPlaceholder
+                {/* <ImageWithPlaceholder
                   className="w-full h-60 object-cover object-top"
                   actualSrc={vice_principal}
                   alt="chairman of the school "
-                />
+                /> */}
                 <div className="text-center">
                   <h3 className="mt-2 text-xl font-semibold text-sans">
                     MD Rafiqul Islam
