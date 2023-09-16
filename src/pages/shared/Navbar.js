@@ -1,70 +1,68 @@
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext, useState } from "react";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContexts";
-import useColorTheme from "../../hooks/useColorTheme";
 
-const Navbar = () => {
+const Navbar = ({ setIsNavOpen, isNavOpen, colorTheme, setTheme }) => {
   const { user, logout } = useContext(AuthContext);
-  const [colorTheme, setTheme] = useColorTheme();
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [subLinkId, setSubLinkId] = useState("");
+  // const [colorTheme, setTheme] = useColorTheme();
+  // const [isNavOpen, setIsNavOpen] = useState(false);
+  // const [subLinkId, setSubLinkId] = useState("");
 
-  const navItems = [
-    { href: "/", name: "Home" },
-    // { href: "/admission", name: "Admission" },
-    {
-      href: "/",
-      name: "Academic",
-      subLink: [
-        { id: "aca1", href: "/academic/class-routine", name: "Class Routine" },
-        { id: "aca2", href: "/", name: "Academic Rules" },
-        { id: "aca3", href: "/", name: "Academic Calender" },
-        { id: "aca4", href: "/", name: "Attendance Sheet" },
-      ],
-    },
-    { href: "/students", name: "Students" },
-    {
-      href: "/",
-      name: "Results",
-      subLink: [
-        { id: "res1", href: "/board-results", name: "Board Results" },
-        { id: "res2", href: "/regular-results", name: "Regular Results" },
-      ],
-    },
-    {
-      href: "/",
-      name: "Facilities",
-      subLink: [
-        { id: "fac1", href: "/facilities/library", name: "Library" },
-        { id: "fac1", href: "/facilities/lab", name: "Lab" },
-        { id: "fac1", href: "/facilities/debate", name: "Debate" },
-      ],
-    },
-    {
-      href: "/",
-      name: "Administration",
-      subLink: [
-        { id: "adm1", href: "/teachers", name: "Teachers" },
-        { id: "adm1", href: "/members", name: "Managing Committee" },
-        { id: "adm1", href: "/staffs", name: "Staff" },
-      ],
-    },
-    { href: "/docs", name: "Documents" },
-    { href: "/admin", name: "Admin" },
-    { href: "/login", name: "Login" },
-  ];
+  // const navItems = [
+  //   { href: "/", name: "Home" },
+  //   // { href: "/admission", name: "Admission" },
+  //   {
+  //     href: "/",
+  //     name: "Academic",
+  //     subLink: [
+  //       { id: "aca1", href: "/academic/class-routine", name: "Class Routine" },
+  //       { id: "aca2", href: "/", name: "Academic Rules" },
+  //       { id: "aca3", href: "/", name: "Academic Calender" },
+  //       { id: "aca4", href: "/", name: "Attendance Sheet" },
+  //     ],
+  //   },
+  //   { href: "/students", name: "Students" },
+  //   {
+  //     href: "/",
+  //     name: "Results",
+  //     subLink: [
+  //       { id: "res1", href: "/board-results", name: "Board Results" },
+  //       { id: "res2", href: "/regular-results", name: "Regular Results" },
+  //     ],
+  //   },
+  //   {
+  //     href: "/",
+  //     name: "Facilities",
+  //     subLink: [
+  //       { id: "fac1", href: "/facilities/library", name: "Library" },
+  //       { id: "fac1", href: "/facilities/lab", name: "Lab" },
+  //       { id: "fac1", href: "/facilities/debate", name: "Debate" },
+  //     ],
+  //   },
+  //   {
+  //     href: "/",
+  //     name: "Administration",
+  //     subLink: [
+  //       { id: "adm1", href: "/teachers", name: "Teachers" },
+  //       { id: "adm1", href: "/members", name: "Managing Committee" },
+  //       { id: "adm1", href: "/staffs", name: "Staff" },
+  //     ],
+  //   },
+  //   { href: "/docs", name: "Documents" },
+  //   { href: "/admin", name: "Admin" },
+  //   { href: "/login", name: "Login" },
+  // ];
 
-  const handleSubMenu = (id) => {
-    setSubLinkId(id);
-    // e.stopPropagation();
-  };
+  // const handleSubMenu = (id) => {
+  //   setSubLinkId(id);
+  //   // e.stopPropagation();
+  // };
 
   return (
     <div
-      className={`border-general sticky top-0 z-40 border-b dark:border-gray-700  transition-colors duration-500  dark:text-white ${
+      className={`border-general sticky top-0 z-50 border-b dark:border-gray-700  transition-colors duration-500  dark:text-white ${
         !isNavOpen
           ? "backdrop-blur-md  bg-slate-50/60 dark:bg-[#0B1120]/80 "
           : "bg-white dark:bg-gray-600"
@@ -81,7 +79,10 @@ const Navbar = () => {
               </a>
             </div>
             <div
-              onClick={() => setIsNavOpen(!isNavOpen)}
+              onClick={(e) => {
+                setIsNavOpen(!isNavOpen);
+                e.stopPropagation();
+              }}
               className="lg:hidden block pr-5"
             >
               {isNavOpen ? (
@@ -287,7 +288,7 @@ const Navbar = () => {
         </div>
 
         {/* mobile */}
-        <div
+        {/* <div
           className={`backdrop-blur-sm bg-gray-600/50 text-white absolute top-16 transition-all ease-in-out  duration-300 h-screen z-20 w-60 p-5 ${
             isNavOpen
               ? "translate-x-0 opacity-100"
@@ -374,7 +375,7 @@ const Navbar = () => {
               {colorTheme === "dark" ? darkIcon : lightIcon}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

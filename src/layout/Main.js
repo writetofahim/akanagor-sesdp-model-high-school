@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import MobileNav from "../components/MobileNav";
+import useColorTheme from "../hooks/useColorTheme";
 import Footer from "../pages/shared/Footer";
 import Navbar from "../pages/shared/Navbar";
 
 const Main = () => {
+  // Scroll to the top of the page when the component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [colorTheme, setTheme] = useColorTheme();
   return (
     <div>
+      {isNavOpen && (
+        <MobileNav
+          isNavOpen={isNavOpen}
+          setIsNavOpen={setIsNavOpen}
+          colorTheme={colorTheme}
+          setTheme={setTheme}
+        />
+      )}
       {/* <div className="max-w-[1400px] mx-auto"> */}
-      <Navbar />
+      <Navbar
+        isNavOpen={isNavOpen}
+        setIsNavOpen={setIsNavOpen}
+        colorTheme={colorTheme}
+        setTheme={setTheme}
+      />
       {/* </div> */}
       <section className="relative -mt-[65px] w-full overflow-hidden xxxoverflow-x-clip bg-slate-50 bg-gradient-to-t from-slate-50 to-slate-100 dark:bg-[#0B1120] dark:bg-none">
         {/* <div className="">
